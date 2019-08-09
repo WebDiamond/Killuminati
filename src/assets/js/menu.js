@@ -1,6 +1,6 @@
 var MenuState = {
 	create: function() {
-		this.buttonmenusound = game.add.audio('buttons');
+    this.buttonmenusound = game.add.audio('buttons');
     this.filtermenu = new Phaser.Filter(game, null, game.cache.getShader('menu'));
     this.filtermenu.addToWorld(-1, -1, 3000, 3000);
     game.add.sprite(50, 160, 'killuminatiwrite');
@@ -26,14 +26,14 @@ var MenuState = {
   },
   onDownRecord: function() {
     this.buttonmenusound.play();
-    game.state.start("Score");
+    window.document.getElementById("overlay").style.display = "block";
   },
   onDownEnd: function() {
     this.buttonmenusound.play();
-    game.state.start('Credit');
-  },
+    window.document.getElementById("overlay").style.display = "block";
+    },
   onDownInfo: function(){
+    window.document.getElementById("overlay").style.display = "block";
     this.buttonmenusound.play();
-    game.state.start('Info');
   }
 };

@@ -11,11 +11,8 @@
   <script type="text/javascript" src="assets/js/phaser.js"> </script>
   <script type="text/javascript" src="assets/js/boot.js"> </script>
   <script type="text/javascript" src="assets/js/menu.js"> </script>
-  <script type="text/javascript" src="assets/js/info.js"> </script>
   <script type="text/javascript" src="assets/js/main.js"> </script>
   <script type="text/javascript" src="assets/js/gameover.js"> </script>
-  <script type="text/javascript" src="assets/js/credit.js"> </script>
-  <script type="text/javascript" src="assets/js/score.js"> </script>
 </head>
 <body>
 <script type="text/javascript">
@@ -26,10 +23,7 @@
   game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, (window.innerHeight * window.devicePixelRatio) - 45 * window.devicePixelRatio, Phaser.WEBGL, 'gameArea');
   game.state.add("Boot", BootState);
   game.state.add("Menu", MenuState);
-  game.state.add("Info", InfoState);
-  game.state.add("Credit", CreditState);
   game.state.add("Main", MainState);
-  game.state.add("Score", ScoreState);
   game.state.add("GameOver", GameOverState);
   game.state.start("Boot");
 </script>

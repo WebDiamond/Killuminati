@@ -1,7 +1,7 @@
 
 var BootState = {
 	preload: function() {
-	  var godly = 'http://192.168.1.3:8080';
+	  var godly = 'http://localhost:4200';
     game.load.shader('menu', godly+'/assets/assets/menu.frag');
     game.load.shader('bacteria', godly+'/assets/assets/bacteria.frag');
 		game.load.audio('buttons', godly+'/assets/sounds/button.mp3');
