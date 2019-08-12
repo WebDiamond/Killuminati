@@ -6,12 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { LoadingComponent } from './static/loader/loader.component';
+//import { LoadingComponent } from './static/loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingComponent
+    //LoadingComponent
   ],
   imports: [
     BrowserModule,

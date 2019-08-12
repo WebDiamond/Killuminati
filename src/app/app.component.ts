@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {LoadingComponent} from "./static/loader/loader.component";
+//import {LoadingComponent} from "./static/loader/loader.component";
 import * as Phaser from 'phaser-ce'
 import BootState from "./game/states/boot";
 import MenuState from "./game/states/menu";
@@ -31,14 +31,14 @@ export class AppComponent implements OnInit{
         window.document.getElementById('game').appendChild(this.gameScriptComponent);
       })
     }*/
-    LoadingComponent.instance.show();
+    //LoadingComponent.instance.show();
     window['Phaser'] = Phaser;
     this.game.state.add('Boot', new BootState);
     this.game.state.add('Menu',new MenuState);
     this.game.state.add('Main', new MainState);
     this.game.state.add('GameOver', new GameOverState);
     this.game.state.start('Boot');
-    LoadingComponent.instance.hide();
+    //LoadingComponent.instance.hide();
     this.adsComponent = window.document.createElement("iframe");
     this.adsComponent.setAttribute("src", "https://ad.a-ads.com/1221941?size=120x90");
     this.adsComponent.style.width = "120px";

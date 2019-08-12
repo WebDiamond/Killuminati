@@ -1,52 +1,62 @@
 import * as Phaser from 'phaser-ce'
 
-export default class MainState extends Phaser.State {
-  public bulletTime: number;
-  public total: number;
-  public score: number = 0;
-  public filter: any;
-  public gameoversound: any;
-  public firebulletsound: any;
-  public hitenemysound: any;
-  public required: number;
-  public elapsedTime: number;
-  public timer: any;
-  public gem: any;
-  public bullets: any;
-  public cmd: any;
-  public buttonone: any;
-  public buttonup: any;
-  public buttondown: any;
-  public requiredico: any;
-  public timerico: any;
-  public failico: any;
-  public scoreico: any;
-  public shurikensone: any;
-  public shurikenstwo: any;
-  public cadooceadis: any;
-  public scarabs: any;
-  public loominadis: any;
-  public bombs: any;
-  public x: any;
+export default class GameState extends Phaser.State {
+  game: Phaser.Game
 
-  create(): void {
-    this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
-    this.CheckStorage();
-    this.gameoversound = this.game.add.audio('gameover');
-    this.firebulletsound = this.game.add.audio('bulletload');
-    this.hitenemysound = this.game.add.audio('hitenemy');
+  bulletTime: number = 0
+  total: number = 0
+  score: number = 0
+  filter: any
+  gameoversound
+  firebulletsound
+  hitenemysound
+  required
+  elapsedTime = 0
+  timer
+  gem
+  bullets
+  cmd
+  buttonone
+  buttonup
+  buttondown
+  requiredico
+  timerico
+  failico
+  scoreico
+  shurikensone
+  shurikenstwo
+  cadoocexadis
+  cadooceadis
+  scarabs
+  loominadis
+  bombs
+  bullet
+
+  constructor (score?: number) {
+    super()
+    this.score = score !== undefined ? score : 0
+  }
+
+  create(game: Phaser.Game): void {
+    this.game = game
+
+    this.filter = new Phaser.Filter(game, null, game.cache.getShader('bacteria'));
+    this.CheckStorage()
+    this.gameoversound = game.add.audio('gameover');
+    this.firebulletsound = game.add.audio('bulletload');
+    this.hitenemysound = game.add.audio('hitenemy');
     this.required = 10 + Math.round(5*Math.random());
     this.elapsedTime = 10 + Math.round(5*Math.random());
-    this.game.world.setBounds(-1,-1, 3500,3500);
-    this.timer = this.game.time.create(false);
+    game.world.setBounds(-1,-1, 3500,3500);
+    this.timer = game.time.create(false);
     this.timer.loop(1000, this.updateTime, this);
     this.timer.start();
     this.generateLevel(0);
-    this.gem = this.game.add.sprite(120, 250, 'gem');
-    this.game.physics.enable(this.gem, Phaser.Physics.ARCADE);
+    this.gem = game.add.sprite(120, 250, 'gem');
+    game.physics.enable(this.gem, Phaser.Physics.ARCADE);
     this.gem.fixedToCamera = true;
     this.generateEnemyGroup(Math.round(9*Math.random()));
-    this.bullets = this.game.add.group();
+    this.bullets = game.add.group();
     this.bullets.enableBody = true;
     this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
     for (let i = 0; i < 5; i++){
@@ -57,37 +67,37 @@ export default class MainState extends Phaser.State {
       b.checkWorldBounds = true;
       b.events.onOutOfBounds.add(this.resetBullet, this);
     }
-    this.cmd = this.game.add.sprite(0, 480, 'cmd');
+    this.cmd = game.add.sprite(0, 480, 'cmd');
     this.cmd.fixedToCamera = true;
-    this.buttonone = this.game.add.button(250, 480, 'atkbutton', this.actionOnClickAtk, this, 2, 1, 0);
+    this.buttonone = game.add.button(250, 480, 'atkbutton', this.actionOnClickAtk, this, 2, 1, 0);
     this.buttonone.fixedToCamera = true;
-    this.buttonup = this.game.add.button(50, 480, 'upbutton', this.actionOnClickUp, this, 2, 1, 0);
+    this.buttonup = game.add.button(50, 480, 'upbutton', this.actionOnClickUp, this, 2, 1, 0);
     this.buttonup.fixedToCamera = true;
-    this.buttondown = this.game.add.button(150, 480, 'downbutton', this.actionOnClickDown, this, 2, 1, 0);
+    this.buttondown = game.add.button(150, 480, 'downbutton', this.actionOnClickDown, this, 2, 1, 0);
     this.buttondown.fixedToCamera = true;
-    this.requiredico = this.game.add.sprite(15, 10, 'pointlabel');
+    this.requiredico = game.add.sprite(15, 10, 'pointlabel');
     this.requiredico.fixedToCamera = true;
-    this.timerico = this.game.add.sprite(100, 10, 'timerlabel');
+    this.timerico = game.add.sprite(100, 10, 'timerlabel');
     this.timerico.fixedToCamera = true;
-    this.failico = this.game.add.sprite(100, 64, 'faillabel');
+    this.failico = game.add.sprite(100, 64, 'faillabel');
     this.failico.fixedToCamera = true;
-    this.scoreico = this.game.add.sprite(15, 64, 'scorelabel');
+    this.scoreico = game.add.sprite(15, 64, 'scorelabel');
     this.scoreico.fixedToCamera = true;
   }
 
-  update(): void {
+  update(game: Phaser.Game): void {
     this.filter.update();
-    this.game.camera.x += 2;
-    this.game.camera.y += 1.5;
-    this.game.world.wrap(this.gem, 0, true);
+    game.camera.x += 2;
+    game.camera.y += 1.5;
+    game.world.wrap(this.gem, 0, true);
     this.shurikensone.angle += 0.3;
     this.shurikenstwo.angle += 0.3;
-    this.game.physics.arcade.overlap(this.bullets, this.loominadis, this.GlobalCollisionHandler, null, this);
-    this.game.physics.arcade.overlap(this.bullets, this.cadooceadis, this.GlobalCollisionHandlerSecond, null, this);
-    this.game.physics.arcade.overlap(this.bullets, this.scarabs, this.GlobalCollisionHandlerThird, null, this);
-    this.game.physics.arcade.overlap(this.gem, this.bombs, this.AnotherCollisionHandler, null, this);
-    this.game.physics.arcade.overlap(this.gem, this.shurikensone, this.AnotherCollisionHandler, null, this);
-    this.game.physics.arcade.overlap(this.gem, this.shurikenstwo, this.AnotherCollisionHandler, null, this);
+    game.physics.arcade.overlap(this.bullets, this.loominadis, this.GlobalCollisionHandler, null, this);
+    game.physics.arcade.overlap(this.bullets, this.cadooceadis, this.GlobalCollisionHandlerSecond, null, this);
+    game.physics.arcade.overlap(this.bullets, this.scarabs, this.GlobalCollisionHandlerThird, null, this);
+    game.physics.arcade.overlap(this.gem, this.bombs, this.AnotherCollisionHandler, null, this);
+    game.physics.arcade.overlap(this.gem, this.shurikensone, this.AnotherCollisionHandler, null, this);
+    game.physics.arcade.overlap(this.gem, this.shurikenstwo, this.AnotherCollisionHandler, null, this);
     if (this.elapsedTime === this.total){
       this.timer.stop();
       this.total = 0;
@@ -101,20 +111,22 @@ export default class MainState extends Phaser.State {
         this.score = 0;
       }
       this.gameoversound.play();
-      this.game.state.start("GameOver");
+      game.state.start("GameOver");
     }
     if (this.required <= 0){
       this.total = 0;
       this.score++
-      this.game.state.start('Main');
+      game.state.start('Main');
     }
   }
 
-  render(): void {
-    this.game.debug.text('     '+this.required, 20, 32);
-    this.game.debug.text('     '+this.total, 120, 32);
-    this.game.debug.text('     '+this.elapsedTime, 120, 86);
-    this.game.debug.text('     '+this.score, 20, 86);
+  render(game: Phaser.Game): void {
+    this.game = game
+
+    game.debug.text('     '+this.required, 20, 32);
+    game.debug.text('     '+this.total, 120, 32);
+    game.debug.text('     '+this.elapsedTime, 120, 86);
+    game.debug.text('     '+this.score, 20, 86);
   }
 
   generateLevel(gnum) {
@@ -153,6 +165,7 @@ export default class MainState extends Phaser.State {
 
   generateCustomGroupEnemy(name, numlimit, kind){
     if (kind === 'cadooceadi'){
+      console.log('generating caoceadi')
       this.cadooceadis = this.game.add.group();
       this.cadooceadis.enableBody = true;
       this.cadooceadis.physicsBodyType = Phaser.Physics.ARCADE;
@@ -167,27 +180,27 @@ export default class MainState extends Phaser.State {
       this.loominadis.physicsBodyType = Phaser.Physics.ARCADE;
       this.loominadis.enableBody = true;
     }
-    for (let i = 0; i < numlimit; i++){
+    for (var i = 0; i < numlimit; i++){
       if (kind === 'cadooceadi'){
-        this.x = this.cadooceadis.create(this.game.world.randomX, Math.random() * 2000, name);
-        this.x.name = kind + i;
+        var x = this.cadooceadis.create(this.game.world.randomX, Math.random() * 2000, name);
+        x.name = kind + i;
       }
       else if (kind === 'scarab'){
-        this.x = this.scarabs.create(this.game.world.randomX, Math.random() * 2000, name);
-        this.x.name = kind + i;
+        var x = this.scarabs.create(this.game.world.randomX, Math.random() * 2000, name);
+        x.name = kind + i;
       }
       else if(kind === 'loominadi'){
-        this.x = this.loominadis.create(this.game.world.randomX, Math.random() * 2000, name);
-        this.x.name = kind + i;
+        var x = this.loominadis.create(this.game.world.randomX, Math.random() * 2000, name);
+        x.name = kind + i;
       }
-      if ((this.x.body.x < this.gem.body.x) && ((this.x.body.y > this.gem.body.y)
-        ||(this.x.body.y < this.gem.body.y)))
-        this.x.kill();
-      this.x.body.velocity.x = 30 + Math.random() * Math.random() + i * Math.random();
-      this.x.body.velocity.y = 30 + Math.random() * Math.random() + i * Math.random();
+      if ((x.body.x < this.gem.body.x) && ((x.body.y > this.gem.body.y)
+        ||(x.body.y < this.gem.body.y)))
+        x.kill();
+      x.body.velocity.x = 30 + Math.random() * Math.random() + i * Math.random();
+      x.body.velocity.y = 30 + Math.random() * Math.random() + i * Math.random();
       if(kind === 'loominadi'){
-        this.x.animations.add('eyemove');
-        this.x.animations.play('eyemove', 10, true);
+        x.animations.add('eyemove');
+        x.animations.play('eyemove', 10, true);
       }
     }
   }
@@ -224,8 +237,10 @@ export default class MainState extends Phaser.State {
       z.body.velocity.y = 50 + Math.random();
     }
   }
+
   generateEnemyGroup(anum) {
     this.generateCustomGroupEnemyElements(23);
+    console.log('generating enemies')
     if (anum === 0){
       this.generateCustomGroupEnemy('loominadis','250','loominadi');
       this.generateCustomGroupEnemy('scarabs','5','scarab');
@@ -277,61 +292,71 @@ export default class MainState extends Phaser.State {
       this.generateCustomGroupEnemy('cadooceadis','10','cadooceadi');
     }
   }
+
   updateTime(){
     this.total++
   }
-  resetBullet(bullet) {
+
+  resetBullet (bullet) {
     bullet.kill();
   }
+
   GlobalCollisionHandler(bullet, loominadi){
+    console.log('collided')
     this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
     bullet.kill();
     loominadi.kill();
     this.required--
     this.hitenemysound.play();
   }
-  GlobalCollisionHandlerSecond(bullet, cadooceadi){
+
+  GlobalCollisionHandlerSecond(bullet, cadooceadi) {
+    console.log('collided')
     this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
     bullet.kill();
     cadooceadi.kill();
     this.required -= 3;
     this.hitenemysound.play();
   }
-  GlobalCollisionHandlerThird(bullet, scarab){
+
+  GlobalCollisionHandlerThird(bullet, scarab) {
+    console.log('collided')
     this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
     bullet.kill();
     scarab.kill();
     this.total -= 5;
     this.hitenemysound.play();
   }
+
   AnotherCollisionHandler(gem, bomb){
+    console.log('collided')
     this.game.add.sprite(bomb.body.x, bomb.body.y,'explosion');
     bomb.kill();
     this.elapsedTime = this.total;
     this.hitenemysound.play();
   }
+
   fireBullet() {
     this.firebulletsound.play();
     if (this.game.time.now > this.bulletTime){
-      let bullet = this.bullets.getFirstExists(false);
-      if (bullet){
-        bullet.reset(this.gem.x, this.gem.y);
-        bullet.body.velocity.x = 1000;
+      this.bullet = this.bullets.getFirstExists(false);
+      if (this.bullet){
+        this.bullet.reset(this.gem.x, this.gem.y);
+        this.bullet.body.velocity.x = 1000;
         this.bulletTime = this.game.time.now + 0.5;
       }
     }
-  }
-
-  actionOnClickAtk(): void {
+  };
+  actionOnClickAtk() {
     this.fireBullet();
   };
-  actionOnClickUp(): void {
+  actionOnClickUp() {
     this.game.camera.y -= 12;
   };
-  actionOnClickDown(): void {
+  actionOnClickDown() {
     this.game.camera.y += 12;
   };
-  CheckStorage(): void {
+  CheckStorage() {
     if (localStorage.getItem('score') === undefined){
       localStorage.setItem('score', '0');
     }
@@ -339,6 +364,4 @@ export default class MainState extends Phaser.State {
       localStorage.setItem('highscore', '0');
     }
   };
-
-
 }
