@@ -8,7 +8,12 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#1976d2">
-  <script type="text/javascript" src="assets/js/phaser.js"> </script>
+  <script src="assets/pixi.js"></script>
+  <script src="assets/p2.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/fbb6a34a28.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.5.0/phaser.min.js"> </script>
   <script type="text/javascript" src="assets/js/boot.js"> </script>
   <script type="text/javascript" src="assets/js/menu.js"> </script>
   <script type="text/javascript" src="assets/js/main.js"> </script>
@@ -20,12 +25,13 @@
   // xmr.start();
 </script>
 <script type="text/javascript">
-  game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, (window.innerHeight * window.devicePixelRatio) - 45 * window.devicePixelRatio, Phaser.WEBGL, 'gameArea');
+  /*
+ game = new Phaser.Game(window.innerWidth * window.devicePixelRatio, (window.innerHeight * window.devicePixelRatio) - 45 * window.devicePixelRatio, Phaser.WEBGL, 'gameArea');
   game.state.add("Boot", BootState);
   game.state.add("Menu", MenuState);
   game.state.add("Main", MainState);
   game.state.add("GameOver", GameOverState);
-  game.state.start("Boot");
+  game.state.start("Boot"); */
 </script>
   <app-root></app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>

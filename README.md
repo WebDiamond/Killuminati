@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
 
+Allo stato attuale il core del gioco non funziona
+
+il problema è dovuto al main.ts nei collisionhandler
+e nella generazione dei proiettili, per avere ulteriori
+chiarimenti sul file main.js originale, questo è collocato
+nella cartella assets
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

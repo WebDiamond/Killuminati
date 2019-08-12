@@ -33,7 +33,8 @@ var MenuState = {
     window.document.getElementById("overlay").style.display = "block";
     },
   onDownInfo: function(){
-    window.document.getElementById("overlay").style.display = "block";
     this.buttonmenusound.play();
+    window.document.getElementById("overlay").style.display = "block";
+
   }
 };
