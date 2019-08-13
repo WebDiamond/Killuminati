@@ -92,12 +92,12 @@ export default class GameState extends Phaser.State {
     game.world.wrap(this.gem, 0, true);
     this.shurikensone.angle += 0.3;
     this.shurikenstwo.angle += 0.3;
-    game.physics.arcade.overlap(this.bullets, this.loominadis, this.GlobalCollisionHandler, null, this);
-    game.physics.arcade.overlap(this.bullets, this.cadooceadis, this.GlobalCollisionHandlerSecond, null, this);
-    game.physics.arcade.overlap(this.bullets, this.scarabs, this.GlobalCollisionHandlerThird, null, this);
-    game.physics.arcade.overlap(this.gem, this.bombs, this.AnotherCollisionHandler, null, this);
-    game.physics.arcade.overlap(this.gem, this.shurikensone, this.AnotherCollisionHandler, null, this);
-    game.physics.arcade.overlap(this.gem, this.shurikenstwo, this.AnotherCollisionHandler, null, this);
+    game.physics.arcade.overlap(this.bullets, this.loominadis, this.CollisionHandler, null, this);
+    game.physics.arcade.overlap(this.bullets, this.cadooceadis, this.CollisionHandler, null, this);
+    game.physics.arcade.overlap(this.bullets, this.scarabs, this.CollisionHandler, null, this);
+    game.physics.arcade.overlap(this.gem, this.bombs, this.CollisionHandler , null, this);
+    game.physics.arcade.overlap(this.gem, this.shurikensone, this.CollisionHandler, null, this);
+    game.physics.arcade.overlap(this.gem, this.shurikenstwo, this.CollisionHandler, null, this);
     if (this.elapsedTime === this.total){
       this.timer.stop();
       this.total = 0;
@@ -301,39 +301,19 @@ export default class GameState extends Phaser.State {
     bullet.kill();
   }
 
-  GlobalCollisionHandler(bullet, loominadi){
-    console.log('collided')
-    this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
-    bullet.kill();
-    loominadi.kill();
-    this.required--
-    this.hitenemysound.play();
-  }
+  CollisionHandler (bullet: Phaser.Sprite, enemy: Phaser.Sprite) {
+    const explosion = this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion')
+    setTimeout(() => explosion.kill(), 3)
 
-  GlobalCollisionHandlerSecond(bullet, cadooceadi) {
-    console.log('collided')
-    this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
-    bullet.kill();
-    cadooceadi.kill();
-    this.required -= 3;
-    this.hitenemysound.play();
-  }
+    bullet.kill()
+    enemy.kill()
 
-  GlobalCollisionHandlerThird(bullet, scarab) {
-    console.log('collided')
-    this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
-    bullet.kill();
-    scarab.kill();
-    this.total -= 5;
-    this.hitenemysound.play();
-  }
+    if (enemy.name.startsWith('loominadi')) this.required --
+    else if (enemy.name.startsWith('cadooceadi')) this.required -= 3
+    else if (enemy.name.startsWith('scarab')) this.required -= 5
+    else this.elapsedTime = this.total
 
-  AnotherCollisionHandler(gem, bomb){
-    console.log('collided')
-    this.game.add.sprite(bomb.body.x, bomb.body.y,'explosion');
-    bomb.kill();
-    this.elapsedTime = this.total;
-    this.hitenemysound.play();
+    this.hitenemysound.play()
   }
 
   fireBullet() {
