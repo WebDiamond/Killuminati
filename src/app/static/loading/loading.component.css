@@ -1,0 +1,27 @@
+.centered{
+  position: relative;
+  margin: auto;
+  top: 0;
+  width: 400px;
+
+}
+.ellipses-animation{
+  position: absolute;
+}
+
+.ellipses-animation::after{
+  content: ".";
+  animation: changeEllipses 1s linear infinite;
+}
+
+@keyframes changeEllipses {
+  0% {
+    content: ".";
+  }
+  50% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}

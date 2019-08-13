@@ -1,0 +1,13 @@
+<div *ngIf="isLoaderOnWait" class="blockBackdrop z-90"></div>
+<div *ngIf="isLoaderVisible" class="forwardBackdropComponent z-90"></div>
+<div *ngIf="isLoaderVisible" class="p-5 b-3 rounded bg-light forwardComponent text-center z-100">
+  <i class="fas fa-cog fa-6x fa-spin"></i>
+  <br>
+  <br>
+  <p *ngIf="true || !isTimeExceeded" >Caricamento in corso<span class="ellipses-animation"></span></p>
+  <div *ngIf="isTimeExceeded">
+    <b>L'operazione sta richiedendo più tempo del previsto, riprovare più tardi.</b>
+    <hr>
+    <button class="btn btn-lg btn-danger" (click)="abortLoading()">Annulla</button>
+  </div>
+</div>
