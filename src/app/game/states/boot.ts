@@ -1,12 +1,10 @@
 import * as Phaser from 'phaser-ce'
-import {LoadingComponent} from '../../static/loading/loading.component';
 
 export default class BootState extends Phaser.State {
   public gd  = 'http://localhost:4200';
   public game: Phaser.Game;
 
   preload(): void {
-    LoadingComponent.instance.show();
     this.game.load.shader('menu', this.gd + '/assets/assets/menu.frag');
     this.game.load.shader('bacteria', this.gd + '/assets/assets/bacteria.frag');
     this.game.load.audio('buttons', this.gd + '/assets/sounds/button.mp3');
@@ -61,7 +59,6 @@ export default class BootState extends Phaser.State {
     this.game.load.spritesheet('loominadiseight', this.gd + '/assets/assets/loominadi8.png', 116, 103, 5);
     this.game.load.spritesheet('loominadisninth', this.gd + '/assets/assets/loominadi9.png', 116, 103, 5);
     this.game.load.spritesheet('loominadistenth', this.gd + '/assets/assets/loominadi10.png', 116, 103, 5);
-    LoadingComponent.instance.hide();
   }
 
   create(): void {

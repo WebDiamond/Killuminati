@@ -8,15 +8,16 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {LoadingComponent} from './static/loading/loading.component';
 import {ErrorComponent} from './static/error/error.component';
-
-//import { LoadingComponent } from './static/loader/loader.component';
+import {StartgameComponent} from './game/init/startgame/startgame.component';
+import {AdsComponent} from './static/ads/ads.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent,
     ErrorComponent,
-    //LoadingComponent
+    StartgameComponent,
+    AdsComponent,
   ],
   imports: [
     BrowserModule,

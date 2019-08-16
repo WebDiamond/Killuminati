@@ -1,13 +1,6 @@
-#ad{
-  z-index: 3;
-  width: 120px;
-  height: 90px;
-  position: fixed;
-  left: 80px;
-  bottom: 80px;
-}
 
-#overlay {
+
+#overlayz {
   position: fixed;
   display: none;
   width: 100%;
@@ -19,9 +12,12 @@
   background-color: rgba(0,0,0,0.5);
   z-index: 2;
   cursor: pointer;
+  transition-property: opacity, left;
+  transition-duration: 2s, 1s;
+  transition-delay: 2s;
 }
 
-#text{
+#textz{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -29,4 +25,64 @@
   color: white;
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
+  transition-property: opacity, left;
+  transition-duration: 3s, 2s;
+  transition-delay: 2s;
+}
+
+
+#overlayx {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+  transition-property: opacity;
+  transition-duration: 2s;
+}
+
+#textx{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transition-property: opacity;
+  transition-duration: 3s;
+}
+
+#overlayy {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+  transition-property: opacity;
+  transition-duration: 3s;
+}
+
+#texty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transition-property: opacity;
+  transition-duration: 2s;
 }

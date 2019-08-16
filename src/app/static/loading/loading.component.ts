@@ -14,19 +14,13 @@ export class LoadingComponent implements OnInit {
   private waitTimeout = 1.5 * 1000; //1500ms
   isTimeExceeded: boolean = false;
   isLoaderOnWait: boolean = false;
-
-
   constructor() {
     LoadingComponent.instance = this;
   }
-
   public show(){this.setVisibility(true)}
   public hide(){this.setVisibility(false)}
-
   private setVisibility(value: boolean){
-    /** imposto l'attesa a 500ms solo se faccio visualizzare il caricamento, altrimento la sua rimozione è immediata */
     let time = value?this.waitTimeout:0;
-    /** dissocio il timer se mentre aspettavo i 500ms è stata dismessa la modal */
     if(!value){
       this.isTimeExceeded = false;
       this.isLoaderOnWait = false;
@@ -37,13 +31,11 @@ export class LoadingComponent implements OnInit {
     this.timer = setInterval(()=>{
       this.isLoaderVisible = value;
       clearInterval(this.timer);
-    }, time)
-
-    //todo capire cosa fare con il timeout timer
+    }, time);
     if(false) {
       this.maxtimeoutTimer = setInterval(() => {
         this.isTimeExceeded = true;
-      }, this.maxTimeout)
+      }, this.maxTimeout);
     }
   }
 

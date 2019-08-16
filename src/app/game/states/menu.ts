@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser-ce'
+import {LoadingComponent} from "../../static/loading/loading.component";
 
 export default class MenuState extends Phaser.State {
   public buttonmenusound;
@@ -21,6 +22,7 @@ export default class MenuState extends Phaser.State {
     this.endbutton.inputEnabled = true;
     this.infobutton = this.game.add.sprite(50, 490, 'infobutton');
     this.infobutton.inputEnabled = true;
+    LoadingComponent.instance.hide();
   }
 
   update(): void {
@@ -37,14 +39,14 @@ export default class MenuState extends Phaser.State {
   }
   onDownRecord(): void {
     this.buttonmenusound.play();
-    window.document.getElementById('overlay').style.display = 'block';
+    window.document.getElementById('overlayz').style.display = 'block';
   }
   onDownEnd(): void {
     this.buttonmenusound.play();
-    window.document.getElementById('overlay').style.display = 'block';
+    window.document.getElementById('overlayy').style.display = 'block';
   }
   onDownInfo(): void {
     this.buttonmenusound.play();
-    window.document.getElementById('overlay').style.display = 'block';
+    window.document.getElementById('overlayx').style.display = 'block';
   }
 }

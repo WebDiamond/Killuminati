@@ -1,5 +1,5 @@
 1) impostare generatelevel con parametro randomico
-2) creazione di overlay separati per ogni tasto
+-) creazione di overlay separati per ogni tasto
 3) aggiungere supporto ad indexed db
 4) sostituire i dati stampati da render con logica orientata su angular
 5) sostituire i controlli gamepad con logica orientata su angular
