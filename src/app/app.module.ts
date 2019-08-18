@@ -10,7 +10,6 @@ import {LoadingComponent} from './static/loading/loading.component';
 import {ErrorComponent} from './static/error/error.component';
 import {StartgameComponent} from './game/init/startgame/startgame.component';
 import {AdsComponent} from './static/ads/ads.component';
-import {InterfaceComponent} from './game/interface/interface.component';
 import {OverlayComponent} from './overlay/overlay.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import {OverlayComponent} from './overlay/overlay.component';
     ErrorComponent,
     StartgameComponent,
     AdsComponent,
-    InterfaceComponent,
     OverlayComponent,
   ],
   imports: [
