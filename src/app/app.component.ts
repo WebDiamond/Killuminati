@@ -12,13 +12,4 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  getScore() {
-    return localStorage.getItem('score');
-  }
-
-  toHome() {
-    window.document.getElementById('overlayz').style.display = 'none';
-    window.document.getElementById('overlayx').style.display = 'none';
-    window.document.getElementById('overlayy').style.display = 'none';
-  }
 }

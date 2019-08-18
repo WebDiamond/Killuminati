@@ -7,6 +7,8 @@ export default class GameOverState extends Phaser.State {
   public game: Phaser.Game;
 
   create() {
+    window.document.getElementById('gamepanel').style.display='none';
+    window.document.getElementById('returnbutton').style.display='block';
     this.filtermenu = new Phaser.Filter(this.game, null, this.game.cache.getShader('menu'));
     this.filtermenu.addToWorld(-1, -1, 3000, 3000);
     this.game.add.sprite(50, 160, 'gameoverwrite');
@@ -21,6 +23,7 @@ export default class GameOverState extends Phaser.State {
   }
   onDownRefresh(): void {
     this.buttonsoundforgameover.play();
+    window.document.getElementById('returnbutton').style.display='none';
     this.game.state.start('Menu');
   }
 }

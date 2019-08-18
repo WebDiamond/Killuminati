@@ -11,9 +11,6 @@ export default class BootState extends Phaser.State {
     this.game.load.audio('hitenemy', this.gd + '/assets/sounds/enemyhit.mp3');
     this.game.load.audio('bulletload', this.gd + '/assets/sounds/firebullet.mp3');
     this.game.load.audio('gameover', this.gd + '/assets/sounds/gameoversound.mp3');
-    this.game.load.image('recordbutton', this.gd + '/assets/buttons/recordbtn.png');
-    this.game.load.image('creditbutton', this.gd + '/assets/buttons/creditbtn.png');
-    this.game.load.image('infobutton', this.gd + '/assets/buttons/infobtn.png');
     this.game.load.image('refreshbutton', this.gd + '/assets/buttons/refresh.png');
     this.game.load.image('startbutton', this.gd + '/assets/buttons/startbtn.png');
     this.game.load.image('killuminatiwrite', this.gd + '/assets/backgrounds/killuminatiwr.png');

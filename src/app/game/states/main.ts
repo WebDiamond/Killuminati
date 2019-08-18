@@ -36,8 +36,10 @@ export default class GameState extends Phaser.State {
   }
 
   create(): void {
+    window.document.getElementById('gamepanel').style.display='block';
+    window.document.getElementById('menubuttons').style.display='none';
     this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
-    this.CheckStorage()
+    this.CheckStorage();
     this.gameoversound = this.game.add.audio('gameover');
     this.firebulletsound = this.game.add.audio('bulletload');
     this.hitenemysound = this.game.add.audio('hitenemy');
