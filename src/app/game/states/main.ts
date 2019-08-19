@@ -52,7 +52,7 @@ export default class GameState extends Phaser.State {
     this.timer = this.game.time.create(false);
     this.timer.loop(1000, this.updateTime, this);
     this.timer.start();
-    this.generateLevel(0);
+    this.generateLevel(Math.floor(Math.random() * 11));
     this.gem = this.game.add.sprite(120, 250, 'gem');
     this.game.physics.enable(this.gem, Phaser.Physics.ARCADE);
     this.gem.fixedToCamera = true;
@@ -116,9 +116,6 @@ export default class GameState extends Phaser.State {
     }
   }
 
-  render(): void {
-    this.game.debug.text('     ' + this.score, 20, 86);
-  }
 
   generateLevel(gnum: number) {
     if (gnum === 0) {
@@ -349,6 +346,7 @@ export default class GameState extends Phaser.State {
     this.game.camera.y += 12;
   }
   CheckStorage() {
+    localStorage.setItem('last', '0');
     if (localStorage.getItem('score') === undefined) {
       localStorage.setItem('score', '0');
     }
