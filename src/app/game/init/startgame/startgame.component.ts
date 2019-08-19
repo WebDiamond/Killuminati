@@ -28,24 +28,19 @@ export class StartgameComponent implements OnInit {
     this.game.state.add('GameOver', new GameOverState);
     this.game.state.start('Boot');
   }
-  public getCurrentTime(i: number): void {
-    console.log(i);
+  public getCurrentTime() {
+      return localStorage.getItem('total');
   }
 
-  public getCurrentPoint(i: number): void {
-    console.log(i);
+  public getRequiredPoint() {
+    return localStorage.getItem('required');
+  }
+  public getTimeLimit() {
+    return localStorage.getItem('elapsedtime');
   }
 
-  public getRequiredTime(i: number): void {
-    console.log(i);
-  }
-
-  public getCurrentScore(i: number): void {
-    console.log(i);
-  }
-
-  public getGameOverScore(i: number): void {
-    console.log(i);
+  public getScore() {
+    return localStorage.getItem('score');
   }
 
   public startGame(){
@@ -61,12 +56,23 @@ export class StartgameComponent implements OnInit {
     window.document.getElementById('overlayz').style.display='block';
   }
 
-  public showOverlayY() {
+  public showOverlayY(): void {
     window.document.getElementById('overlayx').style.display='block';
   }
 
-  public showOverlayZ() {
+  public showOverlayZ(): void {
     window.document.getElementById('overlayy').style.display='block';
   }
 
+  public PlayerControlDown() {
+
+  }
+
+  public PlayerControlUp() {
+
+  }
+
+  public PlayerControlFire() {
+
+  }
 }

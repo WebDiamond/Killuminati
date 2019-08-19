@@ -16,10 +16,9 @@
 }
 
 #textz{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 50px;
+  position: fixed;
+  top: 300px;
+  left: 50px;
   color: white;
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
@@ -45,11 +44,18 @@
   transition-duration: 2s;
 }
 
+#ad{
+  z-index: 6;
+  width: 120px;
+  height: 90px;
+  position: fixed;
+  left: 80px;
+  top: 300px;
+}
 #textx{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 50px;
+  position: fixed;
+  top: 300px;
+  left: 50px;
   color: white;
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
@@ -74,10 +80,9 @@
 }
 
 #texty {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 50px;
+  position: fixed;
+  top: 300px;
+  left: 50px;
   color: white;
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);

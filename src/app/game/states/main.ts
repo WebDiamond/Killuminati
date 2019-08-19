@@ -37,6 +37,7 @@ export default class GameState extends Phaser.State {
 
   create(): void {
     window.document.getElementById('gamepanel').style.display='block';
+    window.document.getElementById('navbarjoypad').style.display='block';
     window.document.getElementById('menubuttons').style.display='none';
     this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
     this.CheckStorage();
@@ -44,7 +45,9 @@ export default class GameState extends Phaser.State {
     this.firebulletsound = this.game.add.audio('bulletload');
     this.hitenemysound = this.game.add.audio('hitenemy');
     this.required = 10 + Math.round(5 * Math.random());
+    localStorage.setItem('required',String(this.required));
     this.elapsedTime = 10 + Math.round(5 * Math.random());
+    localStorage.setItem('elapsedtime',String(this.elapsedTime))
     this.game.world.setBounds(-1, -1, 3500, 3500);
     this.timer = this.game.time.create(false);
     this.timer.loop(1000, this.updateTime, this);
@@ -65,20 +68,12 @@ export default class GameState extends Phaser.State {
       b.checkWorldBounds = true;
       b.events.onOutOfBounds.add(this.resetBullet, this);
     }
-    this.cmd = this.game.add.sprite(0, 480, 'cmd');
-    this.cmd.fixedToCamera = true;
     this.buttonone = this.game.add.button(250, 480, 'atkbutton', this.actionOnClickAtk, this, 2, 1, 0);
     this.buttonone.fixedToCamera = true;
     this.buttonup = this.game.add.button(50, 480, 'upbutton', this.actionOnClickUp, this, 2, 1, 0);
     this.buttonup.fixedToCamera = true;
     this.buttondown = this.game.add.button(150, 480, 'downbutton', this.actionOnClickDown, this, 2, 1, 0);
     this.buttondown.fixedToCamera = true;
-    this.requiredico = this.game.add.sprite(15, 10, 'pointlabel');
-    this.requiredico.fixedToCamera = true;
-    this.timerico = this.game.add.sprite(100, 10, 'timerlabel');
-    this.timerico.fixedToCamera = true;
-    this.failico = this.game.add.sprite(100, 64, 'faillabel');
-    this.failico.fixedToCamera = true;
     this.scoreico = this.game.add.sprite(15, 64, 'scorelabel');
     this.scoreico.fixedToCamera = true;
   }
@@ -99,29 +94,29 @@ export default class GameState extends Phaser.State {
     if (this.elapsedTime === this.total){
       this.timer.stop();
       this.total = 0;
+      localStorage.setItem('total', String(this.total));
       if (this.score > Number(localStorage.getItem('highscore'))) {
         localStorage.setItem('highscore', String(this.score));
-        localStorage.setItem('last', String(this.score));
         this.score = 0;
+        localStorage.setItem('score', String(this.score));
       }
       else if (this.score <= Number(localStorage.getItem('highscore'))) {
-        localStorage.setItem('last', String(this.score));
         this.score = 0;
+        localStorage.setItem('score', String(this.score));
       }
       this.gameoversound.play();
       this.game.state.start("GameOver");
     }
-    if (this.required <= 0) {
+    if (Number(localStorage.getItem('required')) <= 0) {
       this.total = 0;
+      localStorage.setItem('total', String(this.total));
       this.score++
+      localStorage.setItem('score', String(this.score));
       this.game.state.start('Main');
     }
   }
 
   render(): void {
-    this.game.debug.text('     ' + this.required, 20, 32);
-    this.game.debug.text('     ' + this.total, 120, 32);
-    this.game.debug.text('     ' + this.elapsedTime, 120, 86);
     this.game.debug.text('     ' + this.score, 20, 86);
   }
 
@@ -290,6 +285,7 @@ export default class GameState extends Phaser.State {
 
   updateTime() {
     this.total++;
+    localStorage.setItem('total',''+this.total);
   }
 
   resetBullet(bullet) {
@@ -301,6 +297,7 @@ export default class GameState extends Phaser.State {
     bullet.kill();
     loominadi.kill();
     this.required--;
+    localStorage.setItem('required',''+this.required);
     this.hitenemysound.play();
   }
 
@@ -309,6 +306,7 @@ export default class GameState extends Phaser.State {
     bullet.kill();
     cadooceadi.kill();
     this.required -= 3;
+    localStorage.setItem('required',''+this.required);
     this.hitenemysound.play();
   }
 
@@ -317,6 +315,7 @@ export default class GameState extends Phaser.State {
     bullet.kill();
     scarab.kill();
     this.total -= 5;
+    localStorage.setItem('total',''+this.total);
     this.hitenemysound.play();
   }
 
@@ -324,6 +323,8 @@ export default class GameState extends Phaser.State {
     this.game.add.sprite(bomb.body.x, bomb.body.y,'explosion');
     bomb.kill();
     this.elapsedTime = this.total;
+    localStorage.setItem('elapsedtime',''+this.elapsedTime);
+
     this.hitenemysound.play();
   }
 
