@@ -79,6 +79,7 @@ export default class GameState extends Phaser.State {
   }
 
   update(): void {
+    this.checkAttackLS();
     this.filter.update();
     this.game.camera.x += 2;
     this.game.camera.y += 1.5;
@@ -345,6 +346,22 @@ export default class GameState extends Phaser.State {
   actionOnClickDown() {
     this.game.camera.y += 12;
   }
+
+  checkAttackLS () {
+    if (localStorage.getItem('ctrl_dwn') === '1') {
+      this.actionOnClickDown()
+      localStorage.setItem('ctrl_dwn', '0')
+    }
+    if (localStorage.getItem('ctrl_up') === '1') {
+      this.actionOnClickUp()
+      localStorage.setItem('ctrl_up', '0')
+    }
+    if (localStorage.getItem('ctrl_fire') === '1') {
+      this.actionOnClickAtk()
+      localStorage.setItem('ctrl_fire', '0')
+    }
+  }
+
   CheckStorage() {
     localStorage.setItem('last', '0');
     if (localStorage.getItem('score') === undefined) {

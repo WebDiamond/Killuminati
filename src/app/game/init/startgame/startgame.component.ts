@@ -65,14 +65,15 @@ export class StartgameComponent implements OnInit {
   }
 
   public PlayerControlDown() {
-
+    console.log('down')
+    localStorage.setItem('ctrl_dwn', '1')
   }
 
   public PlayerControlUp() {
-
+    localStorage.setItem('ctrl_up', '1')
   }
 
   public PlayerControlFire() {
-
+    localStorage.setItem('ctrl_fire', '1')
   }
 }
