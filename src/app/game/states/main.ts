@@ -102,9 +102,9 @@ export default class GameState extends Phaser.State {
       else if (this.score <= Number(localStorage.getItem('highscore'))) {
         localStorage.setItem('score', String(this.score));
       }
-      this.score = 0;
       this.gameoversound.play();
       this.game.state.start("GameOver");
+      this.score = 0;
     }
     if (this.required <= 0) {
       this.total = 0;
