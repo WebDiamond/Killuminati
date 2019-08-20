@@ -87,11 +87,11 @@ export default class GameState extends Phaser.State {
     this.shurikensone.angle += 0.3;
     this.shurikenstwo.angle += 0.3;
     this.game.physics.arcade.overlap(this.bullets, this.loominadis, this.GlobalCollisionHandler, null, this);
-    this.game.physics.arcade.overlap(this.bullets, this.cadooceadis, this.GlobalCollisionHandlerSecond, null, this);
-    this.game.physics.arcade.overlap(this.bullets, this.scarabs, this.GlobalCollisionHandlerThird, null, this);
-    this.game.physics.arcade.overlap(this.gem, this.bombs, this.AnotherCollisionHandler, null, this);
-    this.game.physics.arcade.overlap(this.gem, this.shurikensone, this.AnotherCollisionHandler, null, this);
-    this.game.physics.arcade.overlap(this.gem, this.shurikenstwo, this.AnotherCollisionHandler, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.cadooceadis, this.GlobalCollisionHandler, null, this);
+    this.game.physics.arcade.overlap(this.bullets, this.scarabs, this.GlobalCollisionHandler, null, this);
+    this.game.physics.arcade.overlap(this.gem, this.bombs, this.GlobalCollisionHandler, null, this);
+    this.game.physics.arcade.overlap(this.gem, this.shurikensone, this.GlobalCollisionHandler, null, this);
+    this.game.physics.arcade.overlap(this.gem, this.shurikenstwo, this.GlobalCollisionHandler, null, this);
     if (this.elapsedTime === this.total){
       this.timer.stop();
       this.total = 0;
@@ -289,6 +289,7 @@ export default class GameState extends Phaser.State {
     bullet.kill();
   }
 
+  /*
   GlobalCollisionHandler(bullet, loominadi) {
     this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
     bullet.kill();
@@ -324,6 +325,31 @@ export default class GameState extends Phaser.State {
     this.elapsedTime = this.total;
     localStorage.setItem('elapsedtime',''+this.elapsedTime);
     this.hitenemysound.play();
+  }
+  */
+
+  GlobalCollisionHandler(hitter, hitted: Phaser.Sprite) {
+    this.game.add.sprite(hitted.body.x, hitted.body.y,'explosion');
+    hitted.kill()
+    this.hitenemysound.play()
+
+    if (hitted.name.startsWith('cadooceadi')) {
+      hitter.kill();
+      this.required -= 3;
+      localStorage.setItem('required', String(this.required))
+    } else if (hitted.name.startsWith('loominadi')) {
+      hitter.kill();
+      this.required --;
+      localStorage.setItem('required', String(this.required));
+    } else if (hitted.name.startsWith('scarab')) {
+      hitter.kill();
+      this.total -= 5;
+      localStorage.setItem('total', String(this.total));
+    } else {
+      this.elapsedTime = this.total;
+      localStorage.setItem('elapsedtime',''+this.elapsedTime);
+      localStorage.setItem('score', ''+this.score);
+    }
   }
 
   fireBullet() {
