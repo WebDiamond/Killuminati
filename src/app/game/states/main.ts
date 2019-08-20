@@ -227,7 +227,7 @@ export default class GameState extends Phaser.State {
 
   generateEnemyGroup(anum: number) {
     this.generateCustomGroupEnemyElements(23);
-    console.log('generating enemies')
+
     if (anum === 0) {
       this.generateCustomGroupEnemy('loominadis',250,'loominadi');
       this.generateCustomGroupEnemy('scarabs',5,'scarab');
@@ -318,7 +318,7 @@ export default class GameState extends Phaser.State {
 
   AnotherCollisionHandler(gem, bomb) {
     localStorage.setItem('score', ''+this.score);
-    console.log(this.score)
+
     this.game.add.sprite(bomb.body.x, bomb.body.y,'explosion');
     bomb.kill();
     this.elapsedTime = this.total;
