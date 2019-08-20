@@ -97,17 +97,16 @@ export default class GameState extends Phaser.State {
       localStorage.setItem('total', String(this.total));
       if (this.score > Number(localStorage.getItem('highscore'))) {
         localStorage.setItem('highscore', String(this.score));
-        this.score = 0;
         localStorage.setItem('score', String(this.score));
       }
       else if (this.score <= Number(localStorage.getItem('highscore'))) {
-        this.score = 0;
         localStorage.setItem('score', String(this.score));
       }
+      this.score = 0;
       this.gameoversound.play();
       this.game.state.start("GameOver");
     }
-    if (Number(localStorage.getItem('required')) <= 0) {
+    if (this.required <= 0) {
       this.total = 0;
       localStorage.setItem('total', String(this.total));
       this.score++
@@ -317,11 +316,12 @@ export default class GameState extends Phaser.State {
   }
 
   AnotherCollisionHandler(gem, bomb) {
+    localStorage.setItem('score', ''+this.score);
+    console.log(this.score)
     this.game.add.sprite(bomb.body.x, bomb.body.y,'explosion');
     bomb.kill();
     this.elapsedTime = this.total;
     localStorage.setItem('elapsedtime',''+this.elapsedTime);
-
     this.hitenemysound.play();
   }
 
