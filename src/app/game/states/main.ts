@@ -4,7 +4,7 @@ export default class GameState extends Phaser.State {
   public game: Phaser.Game;
   public bulletTime: number = 0;
   public total: number = 0;
-  public elapsedTime: number = 0;
+  public elapsedTime: number = 0; // TODO: prevent this number to turn negative
   public score: number = 0;
   public filter: any;
   public gameoversound;
