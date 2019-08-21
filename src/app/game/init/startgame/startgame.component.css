@@ -1,10 +1,15 @@
 #navbarjoypad {
   height: 100px;
   position: fixed;
+  top : 480px;
   left: 0;
-  bottom: 0;
   display: none;
   z-index: 4;
+}
+
+#joypad{
+  display: none;
+  z-index: 5;
 }
 #gamepanel {
   height: 100px;

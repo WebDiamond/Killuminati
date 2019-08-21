@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser-ce'
 
 export default class BootState extends Phaser.State {
-  public gd  = 'http://localhost:4200';
+  public gd  = 'http://192.168.1.4:8080';
   public game: Phaser.Game;
 
   preload(): void {
@@ -23,12 +23,8 @@ export default class BootState extends Phaser.State {
     this.game.load.image('backgroundeight', this.gd + '/assets/backgrounds/background8.png');
     this.game.load.image('backgroundninth', this.gd + '/assets/backgrounds/background9.png');
     this.game.load.image('backgroundtenth', this.gd + '/assets/backgrounds/background10.png');
-    this.game.load.image('atkbutton', this.gd + '/assets/interface/atkbtn.png');
-    this.game.load.image('upbutton', this.gd + '/assets/interface/up.png');
-    this.game.load.image('downbutton', this.gd + '/assets/interface/down.png');
     this.game.load.image('gem', this.gd + '/assets/interface/ii.png');
     this.game.load.image('bullet', this.gd + '/assets/interface/bullet.png');
-    this.game.load.image('scorelabel', this.gd + '/assets/interface/scorecrystal.png');
     this.game.load.image('explosion', this.gd + '/assets/interface/explosionimg.png');
     this.game.load.image('bombs', this.gd + '/assets/assets/bomb.png');
     this.game.load.image('shurikensone', this.gd + '/assets/assets/shuriken1.png');

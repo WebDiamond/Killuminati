@@ -8,6 +8,7 @@ export default class GameOverState extends Phaser.State {
   create() {
     window.document.getElementById('gamepanel').style.display='none';
     window.document.getElementById('navbarjoypad').style.display='none';
+    window.document.getElementById('joypad').style.display='none';
     window.document.getElementById('returnbutton').style.display='block';
     this.filtermenu = new Phaser.Filter(this.game, null, this.game.cache.getShader('menu'));
     this.filtermenu.addToWorld(-1, -1, 3000, 3000);

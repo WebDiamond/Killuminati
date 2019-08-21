@@ -5,6 +5,8 @@ import MenuState from "../../states/menu";
 import MainState from "../../states/main";
 import GameOverState from "../../states/gameover";
 import {LoadingComponent} from "../../../static/loading/loading.component";
+import * as nipplejs from "nipplejs";
+import {JoystickManagerOptions} from "nipplejs";
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +20,18 @@ export class StartgameComponent implements OnInit {
   public gameWidth: number = window.innerWidth * window.devicePixelRatio;
   public gameHeight: number = (window.innerHeight * window.devicePixelRatio) - 45 * window.devicePixelRatio;
   public game: Phaser.Game = new Phaser.Game(this.gameWidth, this.gameHeight, Phaser.WEBGL, 'gameArea');
+  public options: JoystickManagerOptions  = {
+    color: 'red',
+    position: {left: '15%', bottom: '10%'},
+    mode: 'static',
+    size: 100,
+    lockX: true,
+  };
   constructor() { }
 
   ngOnInit() {
+    this.options.zone = window.document.getElementById('joypad');
+    nipplejs.create(this.options);
     LoadingComponent.instance.show();
     this.game.state.add('Boot', new BootState);
     this.game.state.add('Menu',new MenuState);
@@ -65,7 +76,6 @@ export class StartgameComponent implements OnInit {
   }
 
   public PlayerControlDown() {
-    console.log('down')
     localStorage.setItem('ctrl_dwn', '1')
   }
 

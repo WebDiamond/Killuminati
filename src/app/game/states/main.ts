@@ -38,6 +38,7 @@ export default class GameState extends Phaser.State {
   create(): void {
     window.document.getElementById('gamepanel').style.display='block';
     window.document.getElementById('navbarjoypad').style.display='block';
+    window.document.getElementById('joypad').style.display='block';
     window.document.getElementById('menubuttons').style.display='none';
     this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
     this.CheckStorage();
@@ -68,14 +69,7 @@ export default class GameState extends Phaser.State {
       b.checkWorldBounds = true;
       b.events.onOutOfBounds.add(this.resetBullet, this);
     }
-    this.buttonone = this.game.add.button(250, 480, 'atkbutton', this.actionOnClickAtk, this, 2, 1, 0);
-    this.buttonone.fixedToCamera = true;
-    this.buttonup = this.game.add.button(50, 480, 'upbutton', this.actionOnClickUp, this, 2, 1, 0);
-    this.buttonup.fixedToCamera = true;
-    this.buttondown = this.game.add.button(150, 480, 'downbutton', this.actionOnClickDown, this, 2, 1, 0);
-    this.buttondown.fixedToCamera = true;
-    this.scoreico = this.game.add.sprite(15, 64, 'scorelabel');
-    this.scoreico.fixedToCamera = true;
+
   }
 
   update(): void {
@@ -289,44 +283,7 @@ export default class GameState extends Phaser.State {
     bullet.kill();
   }
 
-  /*
-  GlobalCollisionHandler(bullet, loominadi) {
-    this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
-    bullet.kill();
-    loominadi.kill();
-    this.required--;
-    localStorage.setItem('required',''+this.required);
-    this.hitenemysound.play();
-  }
 
-  GlobalCollisionHandlerSecond(bullet, cadooceadi) {
-    this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
-    bullet.kill();
-    cadooceadi.kill();
-    this.required -= 3;
-    localStorage.setItem('required',''+this.required);
-    this.hitenemysound.play();
-  }
-
-  GlobalCollisionHandlerThird(bullet, scarab) {
-    this.game.add.sprite(bullet.body.x, bullet.body.y, 'explosion');
-    bullet.kill();
-    scarab.kill();
-    this.total -= 5;
-    localStorage.setItem('total',''+this.total);
-    this.hitenemysound.play();
-  }
-
-  AnotherCollisionHandler(gem, bomb) {
-    localStorage.setItem('score', ''+this.score);
-
-    this.game.add.sprite(bomb.body.x, bomb.body.y,'explosion');
-    bomb.kill();
-    this.elapsedTime = this.total;
-    localStorage.setItem('elapsedtime',''+this.elapsedTime);
-    this.hitenemysound.play();
-  }
-  */
 
   GlobalCollisionHandler(hitter, hitted: Phaser.Sprite) {
     this.game.add.sprite(hitted.body.x, hitted.body.y,'explosion');
