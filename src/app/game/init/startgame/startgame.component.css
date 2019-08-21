@@ -8,8 +8,12 @@
 }
 
 #joypad{
+  height: 100px;
+  width: 100px;
+  top : 380px;
+  left: 100px;
+  position: fixed;
   display: none;
-  z-index: 5;
 }
 #gamepanel {
   height: 100px;

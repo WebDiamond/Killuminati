@@ -8,7 +8,7 @@ export default class MenuState extends Phaser.State {
   create(): void {
     window.document.getElementById('gamepanel').style.display='none';
     window.document.getElementById('navbarjoypad').style.display='none';
-    window.document.getElementById('joypad').style.display='none';
+    window.document.getElementById('joypad').style.display='block';
     window.document.getElementById('menubuttons').style.display='block';
     this.buttonmenusound = this.game.add.audio('buttons');
     this.filtermenu = new Phaser.Filter(this.game, null, this.game.cache.getShader('menu'));

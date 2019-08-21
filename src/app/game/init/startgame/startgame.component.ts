@@ -24,8 +24,9 @@ export class StartgameComponent implements OnInit {
     color: 'red',
     position: {left: '15%', bottom: '10%'},
     mode: 'static',
-    size: 100,
-    lockX: true,
+    threshold:0.1,
+    catchDistance: 5,
+    lockY:true,
   };
   constructor() { }
 
