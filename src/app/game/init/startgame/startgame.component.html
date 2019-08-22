@@ -1,9 +1,6 @@
 <div id="game">
 </div>
-<div id="joypad">
-  <div id="back"></div>
-  <div id="front"></div>
-</div>
+
 <div id="gamepanel">
   <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
     <div class="card-header"><p>Required: {{getRequiredPoint()}}</p>
@@ -11,31 +8,38 @@
       <p>Time Limit: {{getTimeLimit()}}</p>
       <p>Score:{{getScore()}}</p></div>
   </div>
-
 </div>
-<div id="menubuttons">
+<div id="menubuttons" class="forwardComponent text-center">
   <div class="d-flex flex-column bd-highlight mb-3">
-    <div class="p-2 bd-highlight">
-      <button type="button" (click)="startGame()" class="btn btn-primary">Start</button>
+    <div class="p-2 bd-highlight inline">
+      <button type="button" (click)="startGame()" class="btn btn-primary button"><span>Start</span></button>
     </div>
     <div class="p-2 bd-highlight">
-      <button type="button" (click)="showOverlayX()" class="btn btn-primary">Record</button>
+      <button type="button" (click)="showOverlayX()" class="btn btn-primary button"><span>Record</span></button>
     </div>
     <div class="p-2 bd-highlight">
-      <button type="button" (click)="showOverlayZ()" class="btn btn-primary">Credit</button>
+      <button type="button" (click)="showOverlayZ()" class="btn btn-primary button"><span>Credit</span></button>
     </div>
     <div class="p-2 bd-highlight">
-      <button type="button" (click)="showOverlayY()" class="btn btn-primary">Info</button>
+      <button type="button" (click)="showOverlayY()" class="btn btn-primary button"><span>Info</span></button>
     </div>
   </div>
 </div>
 <div id="returnbutton">
-  <button type="button" (click)="loadGameOver()" class="btn btn-primary">Ricomincia</button>
+  <button type="button" (click)="loadGameOver()" class="btn btn-primary button"><span>Restart</span></button>
 </div>
 <div id="navbarjoypad">
-    <button type="button" (click)="PlayerControlUp()" class="btn btn-primary">Up</button>
-    <button type="button" (click)="PlayerControlDown()" class="btn btn-primary">Down</button>
-    <button type="button" (click)="PlayerControlFire()" class="btn btn-primary">Fire</button>
+  <div class="d-flex flex-column bd-highlight mb-3">
+    <div (click)="PlayerControlUp()" class="p-1 bd-highlight ">
+      <i (pressup)="PlayerControlUp()" class="fas fa-chevron-up fa-2x btn-primary"></i>
+    </div>
+    <div (click)="PlayerControlDown()" class="p-1 bd-highlight">
+      <i (pressup)="PlayerControlDown()" class="fas fa-chevron-down fa-2x btn-primary"></i>
+    </div>
+  </div>
+</div>
+<div (pressup)="PlayerControlFire()" id="firebutton">
+  <button type="button" (click)="PlayerControlFire()" class="btn btn-primary button">Fire</button>
 </div>
 
 

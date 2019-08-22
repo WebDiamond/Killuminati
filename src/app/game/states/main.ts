@@ -38,7 +38,7 @@ export default class GameState extends Phaser.State {
   create(): void {
     window.document.getElementById('gamepanel').style.display='block';
     window.document.getElementById('navbarjoypad').style.display='block';
-    window.document.getElementById('joypad').style.display='block';
+    window.document.getElementById('firebutton').style.display='block';
     window.document.getElementById('menubuttons').style.display='none';
     this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
     this.CheckStorage();

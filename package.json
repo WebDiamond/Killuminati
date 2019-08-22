@@ -22,6 +22,7 @@
     "@angular/router": "~8.0.1",
     "@angular/service-worker": "~8.0.1",
     "@ngx-pwa/local-storage": "^8.0.2",
+    "animate.css": "^3.7.2",
     "nipplejs": "^0.8.2",
     "p2": "^0.7.1",
     "phaser-ce": "^2.13.2",

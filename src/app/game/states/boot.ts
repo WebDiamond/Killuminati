@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser-ce'
 
 export default class BootState extends Phaser.State {
-  public gd  = 'http://192.168.1.4:8080';
+  public gd  = 'http://192.168.1.5:8080';
   public game: Phaser.Game;
 
   preload(): void {
@@ -11,7 +11,6 @@ export default class BootState extends Phaser.State {
     this.game.load.audio('hitenemy', this.gd + '/assets/sounds/enemyhit.mp3');
     this.game.load.audio('bulletload', this.gd + '/assets/sounds/firebullet.mp3');
     this.game.load.audio('gameover', this.gd + '/assets/sounds/gameoversound.mp3');
-    this.game.load.image('killuminatiwrite', this.gd + '/assets/backgrounds/killuminatiwr.png');
     this.game.load.image('gameoverwrite', this.gd + '/assets/backgrounds/gameoverwr.png');
     this.game.load.image('background', this.gd + '/assets/backgrounds/background.png');
     this.game.load.image('backgroundsecond', this.gd + '/assets/backgrounds/background2.png');

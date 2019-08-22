@@ -2,19 +2,58 @@
   height: 100px;
   position: fixed;
   top : 480px;
-  left: 0;
+  left: 50px;
   display: none;
   z-index: 4;
 }
 
-#joypad{
-  height: 100px;
-  width: 100px;
-  top : 380px;
-  left: 100px;
+#firebutton{
+  z-index:4;
+  right: 50px;
+  top: 480px;
   position: fixed;
   display: none;
 }
+
+.button {
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.p-1 .p-2{
+  animation-duration: 3s;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+}
+
 #gamepanel {
   height: 100px;
   position: fixed;
