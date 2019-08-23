@@ -1,16 +1,15 @@
 #navbarjoypad {
-  height: 100px;
   position: fixed;
-  top : 480px;
-  left: 50px;
+  bottom: 75px;
+  left: 30px;
   display: none;
   z-index: 4;
 }
 
 #firebutton{
   z-index:4;
-  right: 50px;
-  top: 480px;
+  right: 30px;
+  bottom: 90px;
   position: fixed;
   display: none;
 }
@@ -28,34 +27,9 @@
   cursor: pointer;
   display: inline-block;
   position: relative;
-  transition: 0.5s;
-}
-
-.button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.button:hover span {
-  padding-right: 25px;
-}
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-.p-1 .p-2{
-  animation-duration: 3s;
-  animation-delay: 2s;
-  animation-iteration-count: infinite;
 }
 
 #gamepanel {
-  height: 100px;
   position: fixed;
   top: 0;
   left: 0;
@@ -63,16 +37,18 @@
   z-index: 4;
 }
 #menubuttons {
-  position: fixed;
-  top: 300px;
-  left: 50px;
+  position: absolute;
+  top: 30vh;
+  left: 10vw;
+  width: 80vw;
   display: none;
   z-index: 4;
 }
 #returnbutton {
-  position: fixed;
-  top: 300px;
-  left: 50px;
+  position: absolute;
+  top: 30vh;
+  left: 10vw;
+  width: 80vw;
   display: none;
   z-index: 4;
 }

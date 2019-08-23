@@ -14,14 +14,6 @@ export default class GameState extends Phaser.State {
   public timer;
   public gem;
   public bullets;
-  public cmd;
-  public buttonone;
-  public buttonup;
-  public buttondown;
-  public requiredico;
-  public timerico;
-  public failico;
-  public scoreico;
   public shurikensone;
   public shurikenstwo;
   public cadooceadis;
@@ -54,7 +46,7 @@ export default class GameState extends Phaser.State {
     this.timer.loop(1000, this.updateTime, this);
     this.timer.start();
     this.generateLevel(Math.floor(Math.random() * 11));
-    this.gem = this.game.add.sprite(120, 250, 'gem');
+    this.gem = this.game.add.sprite(60, 250, 'gem');
     this.game.physics.enable(this.gem, Phaser.Physics.ARCADE);
     this.gem.fixedToCamera = true;
     this.generateEnemyGroup(Math.round(9 * Math.random()));
@@ -323,20 +315,14 @@ export default class GameState extends Phaser.State {
   actionOnClickAtk() {
     this.fireBullet();
   }
-  actionOnClickUp() {
-    this.game.camera.y -= 12;
-  }
-  actionOnClickDown() {
-    this.game.camera.y += 12;
-  }
 
   checkAttackLS () {
     if (localStorage.getItem('ctrl_dwn') === '1') {
-      this.actionOnClickDown()
+      this.game.camera.y += 12;
       localStorage.setItem('ctrl_dwn', '0')
     }
     if (localStorage.getItem('ctrl_up') === '1') {
-      this.actionOnClickUp()
+      this.game.camera.y -= 12;
       localStorage.setItem('ctrl_up', '0')
     }
     if (localStorage.getItem('ctrl_fire') === '1') {

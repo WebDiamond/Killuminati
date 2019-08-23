@@ -1,6 +1,5 @@
 import {Component, Injectable, OnInit} from '@angular/core';
 import * as Phaser from 'phaser-ce';
-import BootState from "../../states/boot";
 import MenuState from "../../states/menu";
 import MainState from "../../states/main";
 import GameOverState from "../../states/gameover";
@@ -22,11 +21,11 @@ export class StartgameComponent implements OnInit {
 
   ngOnInit() {
     LoadingComponent.instance.show();
-    this.game.state.add('Boot', new BootState);
     this.game.state.add('Menu',new MenuState);
     this.game.state.add('Main', new MainState);
     this.game.state.add('GameOver', new GameOverState);
-    this.game.state.start('Boot');
+    this.game.state.start('Menu');
+
   }
   public getCurrentTime() {
       return localStorage.getItem('total');
@@ -64,12 +63,12 @@ export class StartgameComponent implements OnInit {
     window.document.getElementById('overlayy').style.display='block';
   }
 
-  public PlayerControlDown() {
-    localStorage.setItem('ctrl_dwn', '1')
-  }
-
   public PlayerControlUp() {
     localStorage.setItem('ctrl_up', '1')
+  }
+
+  public PlayerControlDown() {
+    localStorage.setItem('ctrl_dwn', '1')
   }
 
   public PlayerControlFire() {

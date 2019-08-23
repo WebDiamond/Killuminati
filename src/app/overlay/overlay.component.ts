@@ -21,7 +21,7 @@ export class OverlayComponent implements OnInit {
 
   }
   getScore() {
-    return localStorage.getItem('score');
+    return localStorage.getItem('highscore');
   }
 
   toHome() {

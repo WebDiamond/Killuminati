@@ -1,45 +1,79 @@
 <div id="game">
 </div>
-
 <div id="gamepanel">
-  <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-    <div class="card-header"><p>Required: {{getRequiredPoint()}}</p>
-      <p>Current Time: {{getCurrentTime()}}</p>
-      <p>Time Limit: {{getTimeLimit()}}</p>
-      <p>Score:{{getScore()}}</p></div>
-  </div>
+    <nav class="navbar navbar-dark bg-primary">
+     <span class="navbar-text">
+       <i class="fas fa-star "></i>
+       {{getRequiredPoint()}} |
+     </span>
+      <span class="navbar-text">
+        <i class="fas fa-stopwatch "></i>
+        {{getCurrentTime()}} |
+     </span>
+      <span class="navbar-text">
+        <i class="fas fa-hourglass-end "></i>
+        {{getTimeLimit()}} |
+     </span>
+      <span class="navbar-text">
+        <i class="fas fa-coins "></i>
+        {{getScore()}} |
+     </span>
+    </nav>
 </div>
 <div id="menubuttons" class="forwardComponent text-center">
   <div class="d-flex flex-column bd-highlight mb-3">
     <div class="p-2 bd-highlight inline">
-      <button type="button" (click)="startGame()" class="btn btn-primary button"><span>Start</span></button>
+      <h1 style="color: deepskyblue;z-index:4" class="animated water">Killuminati</h1>
+    </div>
+    <div class="p-2 bd-highlight inline">
+      <button type="button" (click)="startGame()" class="btn btn-primary button"><span>
+        <i class="fas fa-play-circle "></i>
+        Start </span></button>
     </div>
     <div class="p-2 bd-highlight">
-      <button type="button" (click)="showOverlayX()" class="btn btn-primary button"><span>Record</span></button>
+      <button type="button" (click)="showOverlayX()" class="btn btn-primary button"><span>
+        <i class="fas fa-coins "></i>
+         Record</span></button>
     </div>
     <div class="p-2 bd-highlight">
-      <button type="button" (click)="showOverlayZ()" class="btn btn-primary button"><span>Credit</span></button>
+      <button type="button" (click)="showOverlayZ()" class="btn btn-primary button"><span>
+        <i class="fas fa-stream "></i> Credit</span></button>
     </div>
     <div class="p-2 bd-highlight">
-      <button type="button" (click)="showOverlayY()" class="btn btn-primary button"><span>Info</span></button>
+      <button type="button" (click)="showOverlayY()" class="btn btn-primary button"><span>
+        <i class="fas fa-info-circle "></i> Info </span></button>
     </div>
   </div>
 </div>
-<div id="returnbutton">
-  <button type="button" (click)="loadGameOver()" class="btn btn-primary button"><span>Restart</span></button>
+<div id="returnbutton" class="forwardComponent text-center">
+  <div class="d-flex flex-column bd-highlight mb-3">
+    <div class="p-2 bd-highlight inline">
+      <h1 style="color: white;z-index:4" class="animated water">Gameover</h1>
+    </div>
+    <div class="p-2 bd-highlight inline">
+      <h1 style="color: white;z-index:4" class="animated water"><i class="fas fa-info-circle "></i>Punteggio: {{getScore()}}</h1>
+
+    </div>
+    <div class="p-2 bd-highlight inline">
+      <button type="button" (click)="loadGameOver()" class="btn btn-primary button">
+        <i class="fas fa-arrow btn-primary"></i>
+          <span>Restart</span></button>
+    </div>
+  </div>
+
 </div>
 <div id="navbarjoypad">
-  <div class="d-flex flex-column bd-highlight mb-3">
-    <div (click)="PlayerControlUp()" class="p-1 bd-highlight ">
-      <i (pressup)="PlayerControlUp()" class="fas fa-chevron-up fa-2x btn-primary"></i>
+  <div class="d-flex flex-column bd-highlight mb-3  btn-primary rounded-circle">
+    <div class="p-1 bd-highlight">
+      <i (click)="PlayerControlUp()"  class="fas fa-chevron-up fa-2x "></i>
     </div>
-    <div (click)="PlayerControlDown()" class="p-1 bd-highlight">
-      <i (pressup)="PlayerControlDown()" class="fas fa-chevron-down fa-2x btn-primary"></i>
+    <div class="p-1 bd-highlight">
+      <i (click)="PlayerControlDown()"  class="fas fa-chevron-down fa-2x"></i>
     </div>
   </div>
 </div>
-<div (pressup)="PlayerControlFire()" id="firebutton">
-  <button type="button" (click)="PlayerControlFire()" class="btn btn-primary button">Fire</button>
+<div id="firebutton" class="btn-primary rounded-circle">
+  <i (click)="PlayerControlFire()" class="fas fa-dot-circle fa-2x "></i>
 </div>
 
 
