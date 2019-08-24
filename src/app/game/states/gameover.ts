@@ -13,7 +13,6 @@ export default class GameOverState extends Phaser.State {
     this.filtermenu = new Phaser.Filter(this.game, null, this.game.cache.getShader('menu'));
     if (Number(localStorage.getItem('score')) > Number(localStorage.getItem('highscore'))){
       localStorage.setItem('highscore',''+localStorage.getItem('score'));
-      localStorage.setItem('score','0');
     }
     else localStorage.setItem('score','0');
 

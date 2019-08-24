@@ -48,6 +48,7 @@ export class StartgameComponent implements OnInit {
 
   public loadGameOver(){
     window.document.getElementById('returnbutton').style.display='none';
+    LoadingComponent.instance.show();
     this.game.state.start('Menu');
   }
 

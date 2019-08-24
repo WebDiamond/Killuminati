@@ -21,6 +21,8 @@
   text-align: center;
   transition: all 0.5s;
   cursor: pointer;
+  z-index: 4;
+
 }
 
 .button span {

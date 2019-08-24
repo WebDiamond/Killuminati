@@ -20,15 +20,17 @@
      </span>
     </nav>
 </div>
-<div id="menubuttons" class="forwardComponent text-center">
+<div id="menubuttons" class=" text-center">
   <div class="d-flex flex-column bd-highlight mb-3">
     <div class="p-2 bd-highlight inline">
-      <h1 style="color: deepskyblue;z-index:4" class="animated water">Killuminati</h1>
+      <h1 style="color: deepskyblue;" class="animated water">Killuminati</h1>
     </div>
     <div class="p-2 bd-highlight inline">
-      <button type="button" (click)="startGame()" class="btn btn-primary button"><span>
-        <i class="fas fa-play-circle "></i>
-        Start </span></button>
+      <button type="button" (click)="startGame()" class="btn btn-primary button">
+        <span>
+        <i class="fas fa-play-circle "></i> Start
+        </span>
+      </button>
     </div>
     <div class="p-2 bd-highlight">
       <button type="button" (click)="showOverlayX()" class="btn btn-primary button"><span>
@@ -45,22 +47,18 @@
     </div>
   </div>
 </div>
-<div id="returnbutton" class="forwardComponent text-center">
+<div id="returnbutton" class=" text-center">
   <div class="d-flex flex-column bd-highlight mb-3">
     <div class="p-2 bd-highlight inline">
-      <h1 style="color: white;z-index:4" class="animated water">Gameover</h1>
-    </div>
-    <div class="p-2 bd-highlight inline">
-      <h1 style="color: white;z-index:4" class="animated water"><i class="fas fa-info-circle "></i>Punteggio: {{getScore()}}</h1>
-
+      <h1 style="color: deepskyblue;" class="animated water">Gameover</h1>
     </div>
     <div class="p-2 bd-highlight inline">
       <button type="button" (click)="loadGameOver()" class="btn btn-primary button">
-        <i class="fas fa-arrow btn-primary"></i>
-          <span>Restart</span></button>
+        <i class="fas fa-arrow "></i>
+          Restart
+      </button>
     </div>
   </div>
-
 </div>
 <div id="navbarjoypad">
   <div class="d-flex flex-column bd-highlight mb-3  btn-primary rounded-circle">
@@ -75,5 +73,6 @@
 <div id="firebutton" class="btn-primary rounded-circle">
   <i (click)="PlayerControlFire()" class="fas fa-dot-circle fa-2x "></i>
 </div>
+
 
 
