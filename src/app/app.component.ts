@@ -18,10 +18,10 @@ export class AppComponent implements OnInit {
 
   public title: string = 'killuminatipwa';
 
-  static BestscoreValue: BestscoreModel;
-  static RankValue: RankModel;
-  static GameplayValue: GameplayModel;
-  static JoypadValue: JoypadModel;
+  public BestscoreValue: BestscoreModel;
+  public RankValue: RankModel;
+  public GameplayValue: GameplayModel;
+  public JoypadValue: JoypadModel;
   constructor(private storage: StorageMap,
               private gameplayService: GameplayService,
               private rankService: RankService,
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     let initrank = {
       name: '',
-      points: 0
+      points: 0,
     };
     let initconfig = {
       last: 0,
@@ -45,11 +45,16 @@ export class AppComponent implements OnInit {
       ctrl_down:  0,
       ctrl_fire: 0,
     };
-    this.joypadService.add(AppComponent.JoypadValue);
+    let initbestscore ={
+      highscore:0
+    };
+    this.bestscoreService.add(this.BestscoreValue);
+    this.bestscoreService.set(initbestscore);
+    this.joypadService.add(this.JoypadValue);
     this.joypadService.set(initpad);
-    this.rankService.add(AppComponent.RankValue);
+    this.rankService.add(this.RankValue);
     this.rankService.set(initrank);
-    this.gameplayService.add(AppComponent.GameplayValue);
+    this.gameplayService.add(this.GameplayValue);
     this.gameplayService.set(initconfig);
 
     }
