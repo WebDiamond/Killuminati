@@ -41,7 +41,9 @@ export class StartgameComponent implements OnInit {
   public getScore() {
     return localStorage.getItem('score');
   }
-
+  public getLast() {
+    return localStorage.getItem('last');
+  }
   public startGame(){
     this.game.state.start('Main');
   }

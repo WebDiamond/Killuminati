@@ -3,10 +3,10 @@
   top: 30vh;
   left: 10vw;
   width: 80vw;
-  height: 50vw;
+  height: 400px;
   display: none;
   z-index: 4;
-  background-color: #81bcff;
+  background-color: white;
   cursor: pointer;
   transition-property: opacity, left;
   transition-duration: 2s, 1s;
@@ -36,10 +36,10 @@
   top: 30vh;
   left: 10vw;
   width: 80vw;
-  height: 50vw;
+  height: 400px;
   display: none;
   z-index: 4;
-  background-color: #81bcff;
+  background-color: white;
   cursor: pointer;
   transition-property: opacity, left;
   transition-duration: 2s, 1s;
@@ -62,10 +62,10 @@
   top: 30vh;
   left: 10vw;
   width: 80vw;
-  height: 50vw;
+  height: 400px;
   display: none;
   z-index: 4;
-  background-color: #81bcff;
+  background-color: white;
   cursor: pointer;
   transition-property: opacity, left;
   transition-duration: 2s, 1s;

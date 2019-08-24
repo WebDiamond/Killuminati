@@ -23,7 +23,6 @@ export class OverlayComponent implements OnInit {
   getScore() {
     return localStorage.getItem('highscore');
   }
-
   toHome() {
     window.document.getElementById('overlayz').style.display = 'none';
     window.document.getElementById('overlayx').style.display = 'none';

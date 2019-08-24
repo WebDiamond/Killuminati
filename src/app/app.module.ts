@@ -10,6 +10,7 @@ import {LoadingComponent} from './static/loading/loading.component';
 import {ErrorComponent} from './static/error/error.component';
 import {StartgameComponent} from './game/init/startgame/startgame.component';
 import {OverlayComponent} from './overlay/overlay.component';
+import {SendRankComponent} from './send-rank/send-rank.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {OverlayComponent} from './overlay/overlay.component';
     ErrorComponent,
     StartgameComponent,
     OverlayComponent,
+    SendRankComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import {OverlayComponent} from './overlay/overlay.component';
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

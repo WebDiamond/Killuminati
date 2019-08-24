@@ -53,4 +53,10 @@
   width: 80vw;
   display: none;
   z-index: 4;
+  height: 400px;
+  background-color: white;
+  cursor: pointer;
+  transition-property: opacity, left;
+  transition-duration: 2s, 1s;
+  transition-delay: 2s;
 }

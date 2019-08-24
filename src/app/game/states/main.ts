@@ -1,4 +1,6 @@
 import * as Phaser from 'phaser-ce'
+import {GameplayModel} from "../../services/local/models/gameplay";
+import {GameplayService} from "../../services/local/extensions/gameplay.service";
 
 export default class GameState extends Phaser.State {
   public game: Phaser.Game;
@@ -21,13 +23,11 @@ export default class GameState extends Phaser.State {
   public loominadis;
   public bombs;
   public bullet;
-
-  constructor(score?: number) {
-    super();
-    this.score = score !== undefined ? score : 0;
-  }
+  public gameplayService: GameplayService;
+  static GameplayValue: GameplayModel;
 
   create(): void {
+    localStorage.setItem('last','0');
     window.document.getElementById('gamepanel').style.display='block';
     window.document.getElementById('navbarjoypad').style.display='block';
     window.document.getElementById('firebutton').style.display='block';
@@ -40,7 +40,7 @@ export default class GameState extends Phaser.State {
     this.required = 10 + Math.round(5 * Math.random());
     localStorage.setItem('required',String(this.required));
     this.elapsedTime = 10 + Math.round(5 * Math.random());
-    localStorage.setItem('elapsedtime',String(this.elapsedTime))
+    localStorage.setItem('elapsedtime',String(this.elapsedTime));
     this.game.world.setBounds(-1, -1, 3500, 3500);
     this.timer = this.game.time.create(false);
     this.timer.loop(1000, this.updateTime, this);
@@ -61,7 +61,6 @@ export default class GameState extends Phaser.State {
       b.checkWorldBounds = true;
       b.events.onOutOfBounds.add(this.resetBullet, this);
     }
-
   }
 
   update(): void {
@@ -82,7 +81,7 @@ export default class GameState extends Phaser.State {
       this.timer.stop();
       this.total = 0;
       localStorage.setItem('total', String(this.total));
-      if (this.score > Number(localStorage.getItem('highscore'))) {
+      if (this.score > Number(localStorage.getItem('highscore')) || undefined) {
         localStorage.setItem('highscore', String(this.score));
         localStorage.setItem('score', String(this.score));
       }
@@ -96,7 +95,7 @@ export default class GameState extends Phaser.State {
     if (this.required <= 0) {
       this.total = 0;
       localStorage.setItem('total', String(this.total));
-      this.score++
+      this.score++;
       localStorage.setItem('score', String(this.score));
       this.game.state.start('Main');
     }

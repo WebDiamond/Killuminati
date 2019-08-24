@@ -47,19 +47,32 @@
     </div>
   </div>
 </div>
+
+
+
+
 <div id="returnbutton" class=" text-center">
   <div class="d-flex flex-column bd-highlight mb-3">
-    <div class="p-2 bd-highlight inline">
-      <h1 style="color: deepskyblue;" class="animated water">Gameover</h1>
-    </div>
-    <div class="p-2 bd-highlight inline">
-      <button type="button" (click)="loadGameOver()" class="btn btn-primary button">
-        <i class="fas fa-arrow "></i>
-          Restart
+    <div class="p-5 bd-highlight">
+      <button type="button" (click)="loadGameOver()"  class="btn btn-primary button">
+        <i class="fas fa-window-close ">
+        </i>
       </button>
+    </div>
+    <div class="p-2 bd-highlight ">
+      <hr>
+     </div>
+    <div class="p-3 bd-highlight ">
+      <h1 class="animated water">Gameover</h1>
+    </div>
+    <div class="p-1 bd-highlight">
+      <p><i class="fas fa-info-circle "></i>Punteggio: {{getLast()}}</p>
     </div>
   </div>
 </div>
+
+
+
 <div id="navbarjoypad">
   <div class="d-flex flex-column bd-highlight mb-3  btn-primary rounded-circle">
     <div class="p-1 bd-highlight">
