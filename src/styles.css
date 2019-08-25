@@ -18,7 +18,7 @@ body, canvas {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: blue;
+  background-color: deepskyblue;
   width: 100vw;
   height: 100%;
   z-index: 999 !important;
@@ -78,7 +78,7 @@ body, canvas {
   position: absolute;
   left: 0;
   top: 0;
-  background-color: blue;
+  background-color: deepskyblue;
   width: 100vw;
   height: 100%;
 }

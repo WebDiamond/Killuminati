@@ -53,8 +53,8 @@
   transform: translate(-50%,-50%);
   -ms-transform: translate(-50%,-50%);
   transition-property: opacity, left;
-  transition-duration: 3s, 2s;
-  transition-delay: 2s;
+  transition-duration: 5s, 4s;
+  transition-delay: 5s;
 }
 
 #overlayy {

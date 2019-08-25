@@ -5,9 +5,13 @@ export default class MenuState extends Phaser.State {
   public buttonmenusound;
   public gd  = 'http://192.168.1.5:8080';
   public game: Phaser.Game;
+  public filter: any;
 
   preload(): void {
-    this.game.load.shader('menu', this.gd + '/assets/assets/menu.frag');
+    this.game.load.shader('rainbow', this.gd + '/assets/assets/rainbow.frag');
+    this.game.load.shader('fractal', this.gd + '/assets/assets/fractal.frag');
+    this.game.load.shader('godly', this.gd + '/assets/assets/godly.frag');
+    this.game.load.shader('bluefire', this.gd + '/assets/assets/bluefire.frag');
     this.game.load.shader('bacteria', this.gd + '/assets/assets/bacteria.frag');
     this.game.load.audio('buttons', this.gd + '/assets/sounds/button.mp3');
     this.game.load.audio('hitenemy', this.gd + '/assets/sounds/enemyhit.mp3');
@@ -52,7 +56,12 @@ export default class MenuState extends Phaser.State {
     window.document.getElementById('navbarjoypad').style.display='none';
     window.document.getElementById('firebutton').style.display='none';
     window.document.getElementById('menubuttons').style.display='block';
+    this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
+    this.filter.addToWorld(-1, -1,3000,3000);
     this.buttonmenusound = this.game.add.audio('buttons');
     LoadingComponent.instance.hide();
+  }
+  update(): void {
+    this.filter.update();
   }
 }

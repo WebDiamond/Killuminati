@@ -5,6 +5,7 @@ import MainState from "../../states/main";
 import GameOverState from "../../states/gameover";
 import {LoadingComponent} from "../../../static/loading/loading.component";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,7 @@ export class StartgameComponent implements OnInit {
   public gameWidth: number = window.innerWidth * window.devicePixelRatio;
   public gameHeight: number = (window.innerHeight * window.devicePixelRatio) - 45 * window.devicePixelRatio;
   public game: Phaser.Game = new Phaser.Game(this.gameWidth, this.gameHeight, Phaser.WEBGL, 'gameArea');
+
   constructor() { }
 
   ngOnInit() {
@@ -25,19 +27,16 @@ export class StartgameComponent implements OnInit {
     this.game.state.add('Main', new MainState);
     this.game.state.add('GameOver', new GameOverState);
     this.game.state.start('Menu');
-
   }
   public getCurrentTime() {
-      return localStorage.getItem('total');
+    return localStorage.getItem('total');
   }
-
   public getRequiredPoint() {
     return localStorage.getItem('required');
   }
   public getTimeLimit() {
     return localStorage.getItem('elapsedtime');
   }
-
   public getScore() {
     return localStorage.getItem('score');
   }

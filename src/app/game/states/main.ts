@@ -1,6 +1,4 @@
 import * as Phaser from 'phaser-ce'
-import {GameplayModel} from "../../services/local/models/gameplay";
-import {GameplayService} from "../../services/local/extensions/gameplay.service";
 
 export default class GameState extends Phaser.State {
   public game: Phaser.Game;
@@ -23,16 +21,14 @@ export default class GameState extends Phaser.State {
   public loominadis;
   public bombs;
   public bullet;
-  public gameplayService: GameplayService;
-  static GameplayValue: GameplayModel;
 
   create(): void {
     localStorage.setItem('last','0');
+    window.document.getElementById('particles').style.display='none';
     window.document.getElementById('gamepanel').style.display='block';
     window.document.getElementById('navbarjoypad').style.display='block';
     window.document.getElementById('firebutton').style.display='block';
     window.document.getElementById('menubuttons').style.display='none';
-    this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
     this.CheckStorage();
     this.gameoversound = this.game.add.audio('gameover');
     this.firebulletsound = this.game.add.audio('bulletload');
@@ -104,36 +100,44 @@ export default class GameState extends Phaser.State {
 
   generateLevel(gnum: number) {
     if (gnum === 0) {
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
-      //game.add.sprite(-1, -1, 'background');
     }
     else if (gnum === 1) {
-      this.game.add.sprite(-1, -1, 'backgroundsecond');
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('fractal'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 2) {
-      this.game.add.sprite(-1, -1, 'backgroundthird');
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bluefire'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 3) {
-      this.game.add.sprite(-1, -1, 'backgroundfourth');
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 4) {
-      this.game.add.sprite(-1, -1, 'backgroundfifth');
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 5) {
-      this.game.add.sprite(-1, -1, 'backgroundsixth');
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 6) {
-      this.game.add.sprite(-1, -1, 'backgroundseventh');
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 7) {
-      this.game.add.sprite(-1, -1, 'backgroundeight');
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 8) {
-      this.game.add.sprite(-1, -1, 'backgroundninth');
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 9) {
-      this.game.add.sprite(-1, -1, 'backgroundtenth');
-    }
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter.addToWorld(-1, -1, 3000, 3000);    }
   }
 
   generateCustomGroupEnemy(name: string, numlimit: number, kind: string){
@@ -278,8 +282,8 @@ export default class GameState extends Phaser.State {
 
   GlobalCollisionHandler(hitter, hitted: Phaser.Sprite) {
     this.game.add.sprite(hitted.body.x, hitted.body.y,'explosion');
-    hitted.kill()
-    this.hitenemysound.play()
+    hitted.kill();
+    this.hitenemysound.play();
 
     if (hitted.name.startsWith('cadooceadi')) {
       hitter.kill();
@@ -325,7 +329,7 @@ export default class GameState extends Phaser.State {
       localStorage.setItem('ctrl_up', '0')
     }
     if (localStorage.getItem('ctrl_fire') === '1') {
-      this.actionOnClickAtk()
+      this.actionOnClickAtk();
       localStorage.setItem('ctrl_fire', '0')
     }
   }
