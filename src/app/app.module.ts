@@ -2,17 +2,19 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router'
 import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from './app-routing.module';
+import {AppRoutingModule} from '@src/app/app-routing.module';
 import {ParticlesModule} from 'angular-particle';
-import {AppComponent} from './app.component';
+import {AppComponent} from '@src/app/app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {environment} from '../environments/environment';
-import {LoadingComponent} from './static/loading/loading.component';
-import {ErrorComponent} from './static/error/error.component';
-import {StartgameComponent} from './game/init/startgame/startgame.component';
-import {OverlayComponent} from './overlay/overlay.component';
-import {SendRankComponent} from './send-rank/send-rank.component';
-import {TopRankComponent} from './top-rank/top-rank.component';
+import {environment} from '@src/environments/environment';
+import {LoadingComponent} from '@src/app/static/loading/loading.component';
+import {ErrorComponent} from '@src/app/static/error/error.component';
+import {StartgameComponent} from '@src/app/game/init/startgame/startgame.component';
+import {OverlayComponent} from '@src/app/overlay/overlay.component';
+import {SendRankComponent} from '@src/app/send-rank/send-rank.component';
+import {TopRankComponent} from '@src/app/top-rank/top-rank.component';
+import {MobileInitComponent} from '@src/app/mobile-init/auto-generated.component';
+import {RealtimeComponent} from '@src/app/realtime/realtime.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import {TopRankComponent} from './top-rank/top-rank.component';
     OverlayComponent,
     SendRankComponent,
     TopRankComponent,
+    MobileInitComponent,
+    RealtimeComponent,
   ],
   imports: [
     BrowserModule,

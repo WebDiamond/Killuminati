@@ -17,16 +17,6 @@ export default class MenuState extends Phaser.State {
     this.game.load.audio('hitenemy', this.gd + '/assets/sounds/enemyhit.mp3');
     this.game.load.audio('bulletload', this.gd + '/assets/sounds/firebullet.mp3');
     this.game.load.audio('gameover', this.gd + '/assets/sounds/gameoversound.mp3');
-    this.game.load.image('background', this.gd + '/assets/backgrounds/background.png');
-    this.game.load.image('backgroundsecond', this.gd + '/assets/backgrounds/background2.png');
-    this.game.load.image('backgroundthird', this.gd + '/assets/backgrounds/background3.png');
-    this.game.load.image('backgroundfourth', this.gd + '/assets/backgrounds/background4.png');
-    this.game.load.image('backgroundfifth', this.gd + '/assets/backgrounds/background5.png');
-    this.game.load.image('backgroundsixth', this.gd + '/assets/backgrounds/background6.png');
-    this.game.load.image('backgroundseventh', this.gd + '/assets/backgrounds/background7.png');
-    this.game.load.image('backgroundeight', this.gd + '/assets/backgrounds/background8.png');
-    this.game.load.image('backgroundninth', this.gd + '/assets/backgrounds/background9.png');
-    this.game.load.image('backgroundtenth', this.gd + '/assets/backgrounds/background10.png');
     this.game.load.image('gem', this.gd + '/assets/interface/ii.png');
     this.game.load.image('bullet', this.gd + '/assets/interface/bullet.png');
     this.game.load.image('explosion', this.gd + '/assets/interface/explosionimg.png');

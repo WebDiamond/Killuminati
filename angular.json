@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "killuminatipwa"
+    }
+  },
+  "defaultProject": "killuminatipwa",
+  "cli": {
+    "defaultCollection": "@nativescript/schematics"
+  }
 }

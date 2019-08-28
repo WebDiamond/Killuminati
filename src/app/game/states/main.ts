@@ -104,11 +104,11 @@ export default class GameState extends Phaser.State {
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 1) {
-      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('fractal'));
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 2) {
-      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bluefire'));
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 3) {
@@ -116,27 +116,27 @@ export default class GameState extends Phaser.State {
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 4) {
-      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 5) {
-      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 6) {
-      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 7) {
-      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 8) {
-      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
     }
     else if (gnum === 9) {
-      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('rainbow'));
+      this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);    }
   }
 
