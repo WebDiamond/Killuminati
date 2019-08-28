@@ -1,10 +1,9 @@
 import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {NativeScriptModule} from 'nativescript-angular/nativescript.module';
-
 import {AppRoutingModule} from '@src/app/app-routing.module.tns';
 import {AppComponent} from '@src/app/app.component';
-import {MobileInitComponent} from '@src/app/mobile-init/auto-generated.component';
-import {RealtimeComponent} from '@src/app/realtime/realtime.component';
+import {MobileInitComponent} from '@src/app/components/mobile-init/auto-generated.component';
+import {RealtimeComponent} from '@src/app/components/realtime/realtime.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding

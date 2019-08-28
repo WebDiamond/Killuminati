@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {NativeScriptRouterModule} from 'nativescript-angular/router';
 import {Routes} from '@angular/router';
 
-import {MobileInitComponent} from '@src/app/mobile-init/auto-generated.component';
+import {MobileInitComponent} from '@src/app/components/mobile-init/auto-generated.component';
 
 export const routes: Routes = [
   {

@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser-ce'
-import {LoadingComponent} from "../../static/loading/loading.component";
+import {LoadingComponent} from "../../../static/loading/loading.component";
 
 export default class MenuState extends Phaser.State {
   public buttonmenusound;

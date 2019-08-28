@@ -3,7 +3,7 @@ import * as Phaser from 'phaser-ce';
 import MenuState from "../../states/menu";
 import MainState from "../../states/main";
 import GameOverState from "../../states/gameover";
-import {LoadingComponent} from "../../../static/loading/loading.component";
+import {LoadingComponent} from "../../../../static/loading/loading.component";
 
 
 @Injectable({

@@ -9,12 +9,12 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '@src/environments/environment';
 import {LoadingComponent} from '@src/app/static/loading/loading.component';
 import {ErrorComponent} from '@src/app/static/error/error.component';
-import {StartgameComponent} from '@src/app/game/init/startgame/startgame.component';
-import {OverlayComponent} from '@src/app/overlay/overlay.component';
-import {SendRankComponent} from '@src/app/send-rank/send-rank.component';
-import {TopRankComponent} from '@src/app/top-rank/top-rank.component';
-import {MobileInitComponent} from '@src/app/mobile-init/auto-generated.component';
-import {RealtimeComponent} from '@src/app/realtime/realtime.component';
+import {StartgameComponent} from '@src/app/components/game/init/startgame/startgame.component';
+import {OverlayComponent} from '@src/app/static/overlay/overlay.component';
+import {SendRankComponent} from '@src/app/components/send-rank/send-rank.component';
+import {TopRankComponent} from '@src/app/components/top-rank/top-rank.component';
+import {MobileInitComponent} from '@src/app/components/mobile-init/auto-generated.component';
+import {RealtimeComponent} from '@src/app/components/realtime/realtime.component';
 
 @NgModule({
   declarations: [
