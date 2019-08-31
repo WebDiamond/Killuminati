@@ -8,6 +8,8 @@ import {RankService} from "./services/local/extensions/rank.service";
 import {JoypadService} from "./services/local/extensions/joypad.service";
 import {GameplayService} from "./services/local/extensions/gameplay.service";
 import {BestscoreService} from "./services/local/extensions/bestscore.service";
+import {AuthService, User} from "@src/app/services/auth/auth.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +17,7 @@ import {BestscoreService} from "./services/local/extensions/bestscore.service";
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-
+  currentUser: User;
   public title: string = 'killuminatipwa';
   public BestscoreValue: BestscoreModel;
   public RankValue: RankModel;
@@ -25,11 +27,15 @@ export class AppComponent implements OnInit {
   myParams: Object = {};
   width: number = 100;
   height: number = 100;
-  constructor(private storage: StorageMap,
+  constructor(
+    private router: Router,
+    private authenticationService: AuthService,
+    private storage: StorageMap,
               private gameplayService: GameplayService,
               private rankService: RankService,
               private joypadService: JoypadService,
               private bestscoreService: BestscoreService) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
   ngOnInit() {
     this.myStyle = {
@@ -186,7 +192,10 @@ export class AppComponent implements OnInit {
     this.gameplayService.set(initconfig);
 
     }
-
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 
 
 }

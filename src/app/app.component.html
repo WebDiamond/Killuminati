@@ -1,3 +1,11 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>
+
+<div class="container">
 <div id="particles">
   <particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
 </div>
@@ -7,3 +15,4 @@
   <app-overlay></app-overlay>
   <router-outlet></router-outlet>
 
+</div>

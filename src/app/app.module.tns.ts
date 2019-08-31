@@ -4,6 +4,8 @@ import {AppRoutingModule} from '@src/app/app-routing.module.tns';
 import {AppComponent} from '@src/app/app.component';
 import {MobileInitComponent} from '@src/app/components/mobile-init/auto-generated.component';
 import {RealtimeComponent} from '@src/app/components/realtime/realtime.component';
+import {LoginComponent} from '@src/app/components/login/login.component';
+import {AuthedComponent} from '@src/app/components/authed/authed.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -17,6 +19,8 @@ import {RealtimeComponent} from '@src/app/components/realtime/realtime.component
     AppComponent,
     MobileInitComponent,
     RealtimeComponent,
+    LoginComponent,
+    AuthedComponent,
   ],
   imports: [
     NativeScriptModule,

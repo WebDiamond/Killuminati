@@ -1,7 +1,10 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router'
-import {HttpClientModule} from '@angular/common/http';
+import {ReactiveFormsModule} from '@angular/forms';
+import {JwtInterceptor} from "@src/app/services/auth/interceptors/jwt.interceptor";
+import {ErrorInterceptor} from "@src/app/services/auth/interceptors/error.interceptor";
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from '@src/app/app-routing.module';
 import {ParticlesModule} from 'angular-particle';
 import {AppComponent} from '@src/app/app.component';
@@ -15,6 +18,8 @@ import {SendRankComponent} from '@src/app/components/send-rank/send-rank.compone
 import {TopRankComponent} from '@src/app/components/top-rank/top-rank.component';
 import {MobileInitComponent} from '@src/app/components/mobile-init/auto-generated.component';
 import {RealtimeComponent} from '@src/app/components/realtime/realtime.component';
+import {LoginComponent} from '@src/app/components/login/login.component';
+import {AuthedComponent} from '@src/app/components/authed/authed.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,8 @@ import {RealtimeComponent} from '@src/app/components/realtime/realtime.component
     TopRankComponent,
     MobileInitComponent,
     RealtimeComponent,
+    LoginComponent,
+    AuthedComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +41,12 @@ import {RealtimeComponent} from '@src/app/components/realtime/realtime.component
     ParticlesModule,
     RouterModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

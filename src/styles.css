@@ -24,7 +24,6 @@ body, canvas {
   z-index: 999 !important;
 }
 
-
 .backdrop-free{
   position: fixed;
   left: 0;

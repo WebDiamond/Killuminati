@@ -3,7 +3,7 @@ import {LoadingComponent} from "../../../static/loading/loading.component";
 
 export default class MenuState extends Phaser.State {
   public buttonmenusound;
-  public gd  = 'http://192.168.1.5:8080';
+  public gd  = 'http://localhost:4200';
   public game: Phaser.Game;
   public filter: any;
 
