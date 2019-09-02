@@ -1,0 +1,39 @@
+#navbarjoypad {
+  position: fixed;
+  bottom: 75px;
+  left: 30px;
+  display: none;
+  z-index: 4;
+}
+
+#firebutton{
+  z-index:4;
+  right: 30px;
+  bottom: 90px;
+  position: fixed;
+  display: none;
+}
+#gamepanel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 4;
+}
+
+.button {
+  border-radius: 4px;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+  z-index: 4;
+
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}

@@ -1,4 +1,5 @@
 import * as Phaser from 'phaser-ce'
+import {ParticlesComponent} from "@src/app/static/particles/particles.component";
 
 export default class GameState extends Phaser.State {
   public game: Phaser.Game;
@@ -24,7 +25,7 @@ export default class GameState extends Phaser.State {
 
   create(): void {
     localStorage.setItem('last','0');
-    window.document.getElementById('particles').style.display='none';
+    ParticlesComponent.instance.hide();
     window.document.getElementById('gamepanel').style.display='block';
     window.document.getElementById('navbarjoypad').style.display='block';
     window.document.getElementById('firebutton').style.display='block';

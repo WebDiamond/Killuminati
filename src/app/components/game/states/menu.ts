@@ -17,6 +17,9 @@ export default class MenuState extends Phaser.State {
     this.game.load.audio('hitenemy', this.gd + '/assets/sounds/enemyhit.mp3');
     this.game.load.audio('bulletload', this.gd + '/assets/sounds/firebullet.mp3');
     this.game.load.audio('gameover', this.gd + '/assets/sounds/gameoversound.mp3');
+
+
+
     this.game.load.image('gem', this.gd + '/assets/interface/ii.png');
     this.game.load.image('bullet', this.gd + '/assets/interface/bullet.png');
     this.game.load.image('explosion', this.gd + '/assets/interface/explosionimg.png');

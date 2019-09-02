@@ -1,18 +1,4 @@
-#navbarjoypad {
-  position: fixed;
-  bottom: 75px;
-  left: 30px;
-  display: none;
-  z-index: 4;
-}
 
-#firebutton{
-  z-index:4;
-  right: 30px;
-  bottom: 90px;
-  position: fixed;
-  display: none;
-}
 
 .button {
   border-radius: 4px;
@@ -31,13 +17,7 @@
   position: relative;
 }
 
-#gamepanel {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: none;
-  z-index: 4;
-}
+
 #menubuttons {
   position: absolute;
   top: 30vh;

@@ -2,7 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": [],
+    "types": [
+      "node",
+      "babylonjs",
+      "babylonjs-materials"
+    ],
     "paths": {
       "@src/*": [
         "src/*.web",

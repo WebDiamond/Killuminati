@@ -3,9 +3,9 @@ import {NativeScriptModule} from 'nativescript-angular/nativescript.module';
 import {AppRoutingModule} from '@src/app/app-routing.module.tns';
 import {AppComponent} from '@src/app/app.component';
 import {MobileInitComponent} from '@src/app/components/mobile-init/auto-generated.component';
-import {RealtimeComponent} from '@src/app/components/realtime/realtime.component';
-import {LoginComponent} from '@src/app/components/login/login.component';
-import {AuthedComponent} from '@src/app/components/authed/authed.component';
+import {InterfaceComponent} from '@src/app/components/interface/interface.component';
+import {AdsComponent} from '@src/app/components/ads/ads.component';
+import {ParticlesComponent} from '@src/app/static/particles/particles.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -18,9 +18,9 @@ import {AuthedComponent} from '@src/app/components/authed/authed.component';
   declarations: [
     AppComponent,
     MobileInitComponent,
-    RealtimeComponent,
-    LoginComponent,
-    AuthedComponent,
+    InterfaceComponent,
+    AdsComponent,
+    ParticlesComponent,
   ],
   imports: [
     NativeScriptModule,

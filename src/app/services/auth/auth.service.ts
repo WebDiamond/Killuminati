@@ -3,6 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
+export class User {
+  id: number;
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  token?: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -35,11 +43,3 @@ export class AuthService {
   }
 }
 
-export class User {
-  id: number;
-  username: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  token?: string;
-}

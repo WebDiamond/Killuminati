@@ -1,25 +1,6 @@
 <div id="game">
 </div>
-<div id="gamepanel">
-    <nav class="navbar navbar-dark bg-primary">
-     <span class="navbar-text">
-       <i class="fas fa-star "></i>
-       {{getRequiredPoint()}} |
-     </span>
-      <span class="navbar-text">
-        <i class="fas fa-stopwatch "></i>
-        {{getCurrentTime()}} |
-     </span>
-      <span class="navbar-text">
-        <i class="fas fa-hourglass-end "></i>
-        {{getTimeLimit()}} |
-     </span>
-      <span class="navbar-text">
-        <i class="fas fa-coins "></i>
-        {{getScore()}} |
-     </span>
-    </nav>
-</div>
+
 <div id="menubuttons" class=" text-center">
   <div class="d-flex flex-column bd-highlight mb-3">
     <div class="p-2 bd-highlight inline">
@@ -70,22 +51,4 @@
     </div>
   </div>
 </div>
-
-
-
-<div id="navbarjoypad">
-  <div class="d-flex flex-column bd-highlight mb-3  btn-primary rounded-circle">
-    <div class="p-1 bd-highlight">
-      <i (click)="PlayerControlUp()"  class="fas fa-chevron-up fa-2x "></i>
-    </div>
-    <div class="p-1 bd-highlight">
-      <i (click)="PlayerControlDown()"  class="fas fa-chevron-down fa-2x"></i>
-    </div>
-  </div>
-</div>
-<div id="firebutton" class="btn-primary rounded-circle">
-  <i (click)="PlayerControlFire()" class="fas fa-dot-circle fa-2x "></i>
-</div>
-
-
 
