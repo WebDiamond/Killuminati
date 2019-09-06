@@ -15,7 +15,7 @@ export class GamepadComponent implements OnInit {
   public elapsedTime: number = 0;
   public total: number = 0;
   public highscore: number;
-  public last: number;
+  public last: number = 0;
   public score: number = 0;
   constructor() {
     GamepadComponent.instance = this;
@@ -37,7 +37,7 @@ export class GamepadComponent implements OnInit {
     return this.score
   }
   public getHighScore() {
-    return this.highscore
+    return this.highscore?this.highscore:0
   }
   public setHighScore(num: number) {
     this.highscore = num;

@@ -1,37 +1,24 @@
 import {Injectable} from '@angular/core';
-import {BestscoreModel} from "@src/app/services/local/models/bestscore";
-import {RankModel} from "@src/app/services/local/models/rank";
+import {UserAuthModel} from "@src/app/services/local/models/userauth";
 import {StorageMap} from "@ngx-pwa/local-storage";
-import {RankService} from "@src/app/services/local/extensions/rank.service";
-import {BestscoreService} from "@src/app/services/local/extensions/bestscore.service";
+import {UserAuthService} from "@src/app/services/local/extensions/userauth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbprovideService {
-
-  public BestscoreValue: BestscoreModel;
-  public RankValue: RankModel;
-
+  public UserAuthValue: UserAuthModel;
   constructor(
     private storage: StorageMap,
-    private rankService: RankService,
-    private bestscoreService: BestscoreService) {
-
+    private userauthService: UserAuthService) {
   }
-
   public load(): void{
-    let initrank = {
-      name: '',
-      points: 0,
+    let userexample ={
+      user:'',
+      password:'',
+      token:''
     };
-    let initbestscore ={
-      highscore:0
-    };
-
-    this.bestscoreService.add(this.BestscoreValue);
-    this.bestscoreService.set(initbestscore);
-    this.rankService.add(this.RankValue);
-    this.rankService.set(initrank);
+    this.userauthService.add(this.UserAuthValue);
+    this.userauthService.set(userexample);
   }
 }

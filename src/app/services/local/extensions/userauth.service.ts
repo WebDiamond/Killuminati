@@ -5,8 +5,8 @@ import {StorageMap} from "@ngx-pwa/local-storage";
 @Injectable({
   providedIn: 'root'
 })
-export class BestscoreService extends DbTable {
+export class UserAuthService extends DbTable {
   constructor(storageMap: StorageMap) {
-    super(storageMap, 'bestscore');
+    super(storageMap, 'userauth');
   }
 }
