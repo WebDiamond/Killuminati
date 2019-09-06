@@ -21,9 +21,6 @@ export class StartgameComponent implements OnInit {
 
   ngOnInit() {
     ParticlesComponent.instance.show();
-    window.document.getElementById('overlayz').style.display = 'none';
-    window.document.getElementById('overlayx').style.display = 'none';
-    window.document.getElementById('overlayy').style.display = 'none';
     LoadingComponent.instance.show();
     this.game.state.add('Menu',new MenuState);
     this.game.state.add('Main', new MainState);

@@ -1,23 +1,22 @@
 import * as Phaser from 'phaser-ce'
+import {GamepadComponent} from "@src/app/static/gamepad/gamepad.component";
+import {ParticlesComponent} from "@src/app/static/particles/particles.component";
 
 export default class GameOverState extends Phaser.State {
   public filter: any;
   public game: Phaser.Game;
 
   create() {
-    window.document.getElementById('particles').style.display='block';
-    window.document.getElementById('gamepanel').style.display='none';
-    window.document.getElementById('navbarjoypad').style.display='none';
-    window.document.getElementById('firebutton').style.display='none';
+    ParticlesComponent.instance.show();
+    GamepadComponent.instance.hide();
     window.document.getElementById('returnbutton').style.display='block';
     this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
     this.filter.addToWorld(-1, -1,3000,3000);
-    localStorage.setItem('last',''+localStorage.getItem('score'));
-    if (Number(localStorage.getItem('score')) > Number(localStorage.getItem('highscore'))){
-      localStorage.setItem('highscore',''+localStorage.getItem('score'));
+    localStorage.setItem('last',''+GamepadComponent.instance.getScore());
+    if (GamepadComponent.instance.getScore() > Number(localStorage.getItem('highscore'))){
+      localStorage.setItem('highscore',''+GamepadComponent.instance.getScore());
     }
-    else localStorage.setItem('score','0');
-
+    else GamepadComponent.instance.setScore(0);
   }
   update(): void {
     this.filter.update();

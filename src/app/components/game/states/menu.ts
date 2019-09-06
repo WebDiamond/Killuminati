@@ -1,5 +1,6 @@
 import * as Phaser from 'phaser-ce'
 import {LoadingComponent} from "../../../static/loading/loading.component";
+import {GamepadComponent} from "@src/app/static/gamepad/gamepad.component";
 
 export default class MenuState extends Phaser.State {
   public buttonmenusound;
@@ -17,9 +18,6 @@ export default class MenuState extends Phaser.State {
     this.game.load.audio('hitenemy', this.gd + '/assets/sounds/enemyhit.mp3');
     this.game.load.audio('bulletload', this.gd + '/assets/sounds/firebullet.mp3');
     this.game.load.audio('gameover', this.gd + '/assets/sounds/gameoversound.mp3');
-
-
-
     this.game.load.image('gem', this.gd + '/assets/interface/ii.png');
     this.game.load.image('bullet', this.gd + '/assets/interface/bullet.png');
     this.game.load.image('explosion', this.gd + '/assets/interface/explosionimg.png');
@@ -45,14 +43,12 @@ export default class MenuState extends Phaser.State {
   }
   create(): void {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    window.document.getElementById('gamepanel').style.display='none';
-    window.document.getElementById('navbarjoypad').style.display='none';
-    window.document.getElementById('firebutton').style.display='none';
     window.document.getElementById('menubuttons').style.display='block';
     this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
     this.filter.addToWorld(-1, -1,3000,3000);
     this.buttonmenusound = this.game.add.audio('buttons');
     LoadingComponent.instance.hide();
+    GamepadComponent.instance.hide();
   }
   update(): void {
     this.filter.update();
