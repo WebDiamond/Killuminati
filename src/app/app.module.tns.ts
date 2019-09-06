@@ -2,7 +2,7 @@ import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {NativeScriptModule} from 'nativescript-angular/nativescript.module';
 import {AppRoutingModule} from '@src/app/app-routing.module.tns';
 import {AppComponent} from '@src/app/app.component';
-import {AdsComponent} from '@src/app/components/ads/ads.component';
+import {AdsComponent} from '@src/app/ads/ads.component';
 import {ParticlesComponent} from '@src/app/static/particles/particles.component';
 import {GamepadComponent} from '@src/app/static/gamepad/gamepad.component';
 

@@ -1,5 +1,5 @@
 import * as Phaser from 'phaser-ce'
-import {LoadingComponent} from "../../../static/loading/loading.component";
+import {LoadingComponent} from "../../static/loading/loading.component";
 import {GamepadComponent} from "@src/app/static/gamepad/gamepad.component";
 
 export default class MenuState extends Phaser.State {
@@ -7,8 +7,7 @@ export default class MenuState extends Phaser.State {
   public gd  = 'http://localhost:4200';
   public game: Phaser.Game;
   public filter: any;
-
-  preload(): void {
+  public preload(): void {
     this.game.load.shader('rainbow', this.gd + '/assets/assets/rainbow.frag');
     this.game.load.shader('fractal', this.gd + '/assets/assets/fractal.frag');
     this.game.load.shader('godly', this.gd + '/assets/assets/godly.frag');
@@ -41,7 +40,7 @@ export default class MenuState extends Phaser.State {
     this.game.load.spritesheet('loominadisninth', this.gd + '/assets/assets/loominadi9.png', 116, 103, 5);
     this.game.load.spritesheet('loominadistenth', this.gd + '/assets/assets/loominadi10.png', 116, 103, 5);
   }
-  create(): void {
+  public create(): void {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     window.document.getElementById('menubuttons').style.display='block';
     this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
@@ -50,7 +49,7 @@ export default class MenuState extends Phaser.State {
     LoadingComponent.instance.hide();
     GamepadComponent.instance.hide();
   }
-  update(): void {
+  public update(): void {
     this.filter.update();
   }
 }

@@ -14,6 +14,8 @@ export class GamepadComponent implements OnInit {
   public required: number = 0;
   public elapsedTime: number = 0;
   public total: number = 0;
+  public highscore: number;
+  public last: number;
   public score: number = 0;
   constructor() {
     GamepadComponent.instance = this;
@@ -33,6 +35,18 @@ export class GamepadComponent implements OnInit {
   }
   public getScore() {
     return this.score
+  }
+  public getHighScore() {
+    return this.highscore
+  }
+  public setHighScore(num: number) {
+    this.highscore = num;
+  }
+  public getLast() {
+    return this.last
+  }
+  public setLast(num: number) {
+    this.last = num
   }
   public setRequire(num: number){
     this.required = num;

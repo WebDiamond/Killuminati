@@ -3,8 +3,9 @@ import * as Phaser from 'phaser-ce';
 import MenuState from "../states/menu";
 import MainState from "../states/main";
 import GameOverState from "../states/gameover";
-import {LoadingComponent} from "../../../static/loading/loading.component";
+import {LoadingComponent} from "../../static/loading/loading.component";
 import {ParticlesComponent} from "@src/app/static/particles/particles.component";
+import {GamepadComponent} from "@src/app/static/gamepad/gamepad.component";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class StartgameComponent implements OnInit {
     this.game.state.start('Menu');
   }
   public getLast() {
-    return localStorage.getItem('last');
+    return GamepadComponent.instance.getLast();
   }
   public startGame(){
    this.game.state.start('Main');
