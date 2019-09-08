@@ -1,10 +1,10 @@
 import {TestBed} from '@angular/core/testing';
-import {GameplayService} from './gameplay.service';
+import {UserAuthService} from './userauth.service';
 
-describe('GameplayService', () => {
+describe('BestscoreService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
   it('should be created', () => {
-    const service: GameplayService = TestBed.get(GameplayService);
+    const service: UserAuthService = TestBed.get(UserAuthService);
     expect(service).toBeTruthy();
   });
 });

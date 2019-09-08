@@ -1,17 +1,20 @@
 import * as Phaser from 'phaser-ce'
 import {ParticlesComponent} from "@src/app/static/particles/particles.component";
+import {GamepadComponent} from "@src/app/static/gamepad/gamepad.component";
 
 export default class GameState extends Phaser.State {
   public game: Phaser.Game;
+  public last: number;
+  public highscore: number;
   public bulletTime: number = 0;
   public total: number = 0;
-  public elapsedTime: number = 0; // TODO: prevent this number to turn negative
+  public elapsedTime: number = 0;
   public score: number = 0;
   public filter: any;
-  public gameoversound;
-  public firebulletsound;
-  public hitenemysound;
-  public required;
+  public gameoversound: any;
+  public firebulletsound: any;
+  public hitenemysound: any;
+  public required: number;
   public timer;
   public gem;
   public bullets;
@@ -22,22 +25,19 @@ export default class GameState extends Phaser.State {
   public loominadis;
   public bombs;
   public bullet;
-
-  create(): void {
-    localStorage.setItem('last','0');
+  public create(): void {
     ParticlesComponent.instance.hide();
-    window.document.getElementById('gamepanel').style.display='block';
-    window.document.getElementById('navbarjoypad').style.display='block';
-    window.document.getElementById('firebutton').style.display='block';
+    GamepadComponent.instance.show();
     window.document.getElementById('menubuttons').style.display='none';
-    this.CheckStorage();
+    this.last = 0;
+    this.highscore = 0;
     this.gameoversound = this.game.add.audio('gameover');
     this.firebulletsound = this.game.add.audio('bulletload');
     this.hitenemysound = this.game.add.audio('hitenemy');
     this.required = 10 + Math.round(5 * Math.random());
-    localStorage.setItem('required',String(this.required));
+    GamepadComponent.instance.setRequire(this.required);
     this.elapsedTime = 10 + Math.round(5 * Math.random());
-    localStorage.setItem('elapsedtime',String(this.elapsedTime));
+    GamepadComponent.instance.setElapsedtime(this.elapsedTime);
     this.game.world.setBounds(-1, -1, 3500, 3500);
     this.timer = this.game.time.create(false);
     this.timer.loop(1000, this.updateTime, this);
@@ -59,10 +59,9 @@ export default class GameState extends Phaser.State {
       b.events.onOutOfBounds.add(this.resetBullet, this);
     }
   }
-
-  update(): void {
-    this.checkAttackLS();
+  public update(): void {
     this.filter.update();
+    this.checkAttackLS();
     this.game.camera.x += 2;
     this.game.camera.y += 1.5;
     this.game.world.wrap(this.gem, 0, true);
@@ -77,13 +76,13 @@ export default class GameState extends Phaser.State {
     if (this.elapsedTime === this.total){
       this.timer.stop();
       this.total = 0;
-      localStorage.setItem('total', String(this.total));
-      if (this.score > Number(localStorage.getItem('highscore')) || undefined) {
-        localStorage.setItem('highscore', String(this.score));
-        localStorage.setItem('score', String(this.score));
+      GamepadComponent.instance.setTotal(this.total);
+      if (this.score > GamepadComponent.instance.getLast()) {
+        GamepadComponent.instance.setScore(this.score);
+        GamepadComponent.instance.setScore(this.score);
       }
-      else if (this.score <= Number(localStorage.getItem('highscore'))) {
-        localStorage.setItem('score', String(this.score));
+      else if (this.score <= GamepadComponent.instance.getHighScore()) {
+        GamepadComponent.instance.setScore(this.score);
       }
       this.gameoversound.play();
       this.game.state.start("GameOver");
@@ -91,15 +90,13 @@ export default class GameState extends Phaser.State {
     }
     if (this.required <= 0) {
       this.total = 0;
-      localStorage.setItem('total', String(this.total));
+      GamepadComponent.instance.setTotal(this.total);
       this.score++;
-      localStorage.setItem('score', String(this.score));
+      GamepadComponent.instance.setScore(this.score);
       this.game.state.start('Main');
     }
   }
-
-
-  generateLevel(gnum: number) {
+  public generateLevel(gnum: number): void {
     if (gnum === 0) {
       this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('bacteria'));
       this.filter.addToWorld(-1, -1, 3000, 3000);
@@ -140,8 +137,7 @@ export default class GameState extends Phaser.State {
       this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
       this.filter.addToWorld(-1, -1, 3000, 3000);    }
   }
-
-  generateCustomGroupEnemy(name: string, numlimit: number, kind: string){
+  public generateCustomGroupEnemy(name: string, numlimit: number, kind: string): void{
     if (kind === 'cadooceadi') {
       this.cadooceadis = this.game.add.group();
       this.cadooceadis.enableBody = true;
@@ -181,7 +177,7 @@ export default class GameState extends Phaser.State {
       }
     }
   }
-  generateCustomGroupEnemyElements(numlimit: number) {
+  public generateCustomGroupEnemyElements(numlimit: number): void {
     this.bombs = this.game.add.group();
     this.shurikensone = this.game.add.group();
     this.shurikenstwo = this.game.add.group();
@@ -214,10 +210,8 @@ export default class GameState extends Phaser.State {
       z.body.velocity.y = 50 + Math.random();
     }
   }
-
-  generateEnemyGroup(anum: number) {
+  public generateEnemyGroup(anum: number): void {
     this.generateCustomGroupEnemyElements(23);
-
     if (anum === 0) {
       this.generateCustomGroupEnemy('loominadis',250,'loominadi');
       this.generateCustomGroupEnemy('scarabs',5,'scarab');
@@ -269,43 +263,37 @@ export default class GameState extends Phaser.State {
       this.generateCustomGroupEnemy('cadooceadis',10,'cadooceadi');
     }
   }
-
-  updateTime() {
+  public updateTime(): void {
     this.total++;
-    localStorage.setItem('total',''+this.total);
+    GamepadComponent.instance.setTotal(this.total)
   }
-
-  resetBullet(bullet) {
+  public resetBullet(bullet): void {
     bullet.kill();
   }
-
-
-
-  GlobalCollisionHandler(hitter, hitted: Phaser.Sprite) {
+  public GlobalCollisionHandler(hitter, hitted: Phaser.Sprite): void {
     this.game.add.sprite(hitted.body.x, hitted.body.y,'explosion');
     hitted.kill();
     this.hitenemysound.play();
-
     if (hitted.name.startsWith('cadooceadi')) {
       hitter.kill();
       this.required -= 3;
-      localStorage.setItem('required', String(this.required))
+      GamepadComponent.instance.setRequire(this.required);
     } else if (hitted.name.startsWith('loominadi')) {
       hitter.kill();
       this.required --;
-      localStorage.setItem('required', String(this.required));
+      GamepadComponent.instance.setRequire(this.required);
     } else if (hitted.name.startsWith('scarab')) {
       hitter.kill();
       this.total -= 5;
-      localStorage.setItem('total', String(this.total));
+      GamepadComponent.instance.setTotal(this.total)
     } else {
       this.elapsedTime = this.total;
-      localStorage.setItem('elapsedtime',''+this.elapsedTime);
-      localStorage.setItem('score', ''+this.score);
+      GamepadComponent.instance.setTotal(this.total);
+      GamepadComponent.instance.setElapsedtime(this.elapsedTime);
+      GamepadComponent.instance.setScore(this.score)
     }
   }
-
-  fireBullet() {
+  public fireBullet(): void {
     this.firebulletsound.play();
     if (this.game.time.now > this.bulletTime){
       this.bullet = this.bullets.getFirstExists(false);
@@ -316,32 +304,21 @@ export default class GameState extends Phaser.State {
       }
     }
   }
-  actionOnClickAtk() {
+  public actionOnClickAtk(): void {
     this.fireBullet();
   }
-
-  checkAttackLS () {
-    if (localStorage.getItem('ctrl_dwn') === '1') {
+  public checkAttackLS(): void {
+    if (GamepadComponent.instance.ctrlDown === 0) {
       this.game.camera.y += 12;
-      localStorage.setItem('ctrl_dwn', '0')
+      GamepadComponent.instance.PlayerControlDownx()
     }
-    if (localStorage.getItem('ctrl_up') === '1') {
+    if (GamepadComponent.instance.ctrlUp === 0) {
       this.game.camera.y -= 12;
-      localStorage.setItem('ctrl_up', '0')
+      GamepadComponent.instance.PlayerControlUpx()
     }
-    if (localStorage.getItem('ctrl_fire') === '1') {
+    if (GamepadComponent.instance.ctrlFire === 0) {
       this.actionOnClickAtk();
-      localStorage.setItem('ctrl_fire', '0')
-    }
-  }
-
-  CheckStorage() {
-    localStorage.setItem('last', '0');
-    if (localStorage.getItem('score') === undefined) {
-      localStorage.setItem('score', '0');
-    }
-    else if (localStorage.getItem('highscore') === undefined) {
-      localStorage.setItem('highscore', '0');
+      GamepadComponent.instance.PlayerControlFirex()
     }
   }
 }

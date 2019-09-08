@@ -9,12 +9,12 @@ import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '@src/environments/environment';
 import {LoadingComponent} from '@src/app/static/loading/loading.component';
 import {ErrorComponent} from '@src/app/static/error/error.component';
-import {StartgameComponent} from '@src/app/components/game/init/startgame.component';
-import {OverlayComponent} from '@src/app/components/overlay/overlay.component';
+import {StartgameComponent} from '@src/app/game/init/startgame.component';
+import {OverlayComponent} from '@src/app/menu/overlay.component';
 import {HttpClientModule} from "@angular/common/http";
-import {InterfaceComponent} from '@src/app/components/interface/interface.component';
-import {AdsComponent} from '@src/app/components/ads/ads.component';
+import {AdsComponent} from '@src/app/static/ads/ads.component';
 import {ParticlesComponent} from '@src/app/static/particles/particles.component';
+import {GamepadComponent} from '@src/app/static/gamepad/gamepad.component';
 
 @NgModule({
   declarations: [
@@ -23,9 +23,9 @@ import {ParticlesComponent} from '@src/app/static/particles/particles.component'
     ErrorComponent,
     StartgameComponent,
     OverlayComponent,
-    InterfaceComponent,
     AdsComponent,
     ParticlesComponent,
+    GamepadComponent,
   ],
   imports: [
     BrowserModule,
