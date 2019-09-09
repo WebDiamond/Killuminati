@@ -4,7 +4,7 @@ import {GamepadComponent} from "@src/app/static/gamepad/gamepad.component";
 
 export default class MenuState extends Phaser.State {
   public buttonmenusound;
-  public gd  = 'http://localhost:4200';
+  public gd  = 'http://192.168.1.10:8080';
   public game: Phaser.Game;
   public filter: any;
   public preload(): void {
@@ -43,13 +43,15 @@ export default class MenuState extends Phaser.State {
   public create(): void {
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     window.document.getElementById('menubuttons').style.display='block';
-    this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
-    this.filter.addToWorld(-1, -1,3000,3000);
+//    this.filter = new Phaser.Filter(this.game, null, this.game.cache.getShader('godly'));
+  //  this.filter.addToWorld(-1, -1,3000,3000);
+    this.game.stage.backgroundColor='479cde';
+
     this.buttonmenusound = this.game.add.audio('buttons');
     LoadingComponent.instance.hide();
     GamepadComponent.instance.hide();
   }
   public update(): void {
-    this.filter.update();
+    // this.filter.update();
   }
 }

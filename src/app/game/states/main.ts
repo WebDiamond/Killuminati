@@ -30,7 +30,6 @@ export default class GameState extends Phaser.State {
     GamepadComponent.instance.show();
     window.document.getElementById('menubuttons').style.display='none';
     this.last = 0;
-    this.highscore = 0;
     this.gameoversound = this.game.add.audio('gameover');
     this.firebulletsound = this.game.add.audio('bulletload');
     this.hitenemysound = this.game.add.audio('hitenemy');
@@ -46,7 +45,7 @@ export default class GameState extends Phaser.State {
     this.gem = this.game.add.sprite(60, 250, 'gem');
     this.game.physics.enable(this.gem, Phaser.Physics.ARCADE);
     this.gem.fixedToCamera = true;
-    this.generateEnemyGroup(Math.round(9 * Math.random()));
+    this.generateEnemyGroup( Math.round(9 * Math.random()));//
     this.bullets = this.game.add.group();
     this.bullets.enableBody = true;
     this.bullets.physicsBodyType = Phaser.Physics.ARCADE;

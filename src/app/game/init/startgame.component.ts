@@ -3,6 +3,7 @@ import * as Phaser from 'phaser-ce';
 import MenuState from "../states/menu";
 import MainState from "../states/main";
 import GameOverState from "../states/gameover";
+import Runner from '../states/runner'
 import {LoadingComponent} from "../../static/loading/loading.component";
 import {ParticlesComponent} from "@src/app/static/particles/particles.component";
 import {GamepadComponent} from "@src/app/static/gamepad/gamepad.component";
@@ -28,6 +29,7 @@ export class StartgameComponent implements OnInit {
     ParticlesComponent.instance.show();
     LoadingComponent.instance.show();
     AdsComponent.instance.inject('ady');
+    this.game.state.add('Runner', new Runner);
     this.game.state.add('Menu',new MenuState);
     this.game.state.add('Main', new MainState);
     this.game.state.add('GameOver', new GameOverState);
@@ -37,7 +39,8 @@ export class StartgameComponent implements OnInit {
     return GamepadComponent.instance.getLast();
   }
   public startGame(){
-   this.game.state.start('Main');
+   // this.game.state.start('Main');
+    this.game.state.start('Runner');
   }
 
   public loadGameOver(){
