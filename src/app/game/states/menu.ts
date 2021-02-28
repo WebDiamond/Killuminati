@@ -4,7 +4,7 @@ import {GamepadComponent} from "@src/app/static/gamepad/gamepad.component";
 
 export default class MenuState extends Phaser.State {
   public buttonmenusound;
-  public gd  = 'http://192.168.1.10:8080';
+  public gd  = 'http://localhost:4200';
   public game: Phaser.Game;
   public filter: any;
   public preload(): void {
