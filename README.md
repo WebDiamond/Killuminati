@@ -1,34 +1,53 @@
-# Killuminatipwa
+# Killuminati — Expo SDK 54
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+## Requisiti
+- **Node.js 20.19+** (requisito minimo SDK 54)
+- Expo Go aggiornato a SDK 54
 
-Allo stato attuale il core del gioco non funziona
+## Avvio rapido
 
-il problema è dovuto al main.ts nei collisionhandler
-e nella generazione dei proiettili, per avere ulteriori
-chiarimenti sul file main.js originale, questo è collocato
-nella cartella assets
+```bash
+cd killuminati-expo
+npm install
+npx expo start
+```
 
-## Development server
+Scansiona il QR con **Expo Go** (iOS/Android).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Struttura
+```
+├── App.tsx              ← Schermata principale + rendering SVG
+├── src/
+│   ├── Sprites.tsx      ← Sprite SVG (react-native-svg)
+│   └── engine.ts        ← Game engine (logica, collisioni, spawn)
+├── app.json             ← Config Expo SDK 54 + New Architecture
+├── package.json         ← Dipendenze SDK 54 compatibili
+└── tsconfig.json
+```
 
-## Code scaffolding
+## SDK 54 — Versioni compatibili
+| Pacchetto | Versione |
+|-----------|----------|
+| expo | ~54.0.9 |
+| react | 19.1.0 |
+| react-native | 0.81.4 |
+| react-native-svg | ~15.11.2 |
+| react-native-safe-area-context | ~5.6.0 |
+| @react-native-async-storage/async-storage | ~2.2.0 |
+| expo-asset | ~11.1.5 |
+| expo-status-bar | ~2.2.3 |
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## New Architecture
+SDK 54 ha `newArchEnabled: true` in app.json. Questa è l'ultima versione che supporta la Legacy Architecture — SDK 55 la rimuoverà completamente.
 
-## Build
+## AdMob
+In `App.tsx`, riga 14:
+```ts
+const ADMOB_ID = ""; // tuo Ad Unit ID
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Build APK
+```bash
+npm install -g eas-cli
+eas build --platform android --profile preview
+```
