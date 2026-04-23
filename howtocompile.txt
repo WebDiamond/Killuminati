@@ -1,0 +1,3 @@
+eas build:configure
+eas build -p android --profile preview
+eas build -p android

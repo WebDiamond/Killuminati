@@ -2,7 +2,7 @@ const BULLET_SPEED = 8;
 const SCROLL_SPEED = 1.2;
 const PLAYER_X = 60;
 const ENEMY_COUNT = 22;
-const BOMB_COUNT = 8;
+const BOMB_COUNT = 3;
 const SHURIKEN_COUNT = 6;
 
 export { PLAYER_X, SCROLL_SPEED, BULLET_SPEED };
@@ -51,7 +51,7 @@ export function mkLevel(gw: number, svgH: number): GameState {
   return {
     py: svgH / 2 - 20, ty: svgH / 2 - 20, sx: 0,
     bul: [], en, hz, ex: [],
-    req: (6 + Math.floor(Math.random() * 4)) * 4,
+    req: (3 + Math.floor(Math.random() * 3)) * 4,
     tl: 30 + Math.floor(Math.random() * 11),
     el: 0, fr: 0, alive: true, bob: 0,
   };

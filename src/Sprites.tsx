@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { G, Ellipse, Circle, Line, Path, Polygon, Text as SvgText } from "react-native-svg";
 
-export function Dragon({ x, y, glow, frame }: { x: number; y: number; glow: number; frame: number }) {
+export const Dragon = memo(function Dragon({ x, y, glow, frame }: { x: number; y: number; glow: number; frame: number }) {
   const wa = Math.sin(frame * 0.15) * 18;
   const tw = Math.sin(frame * 0.08) * 6;
   const br = 0.3 + Math.sin(frame * 0.1) * 0.2;
@@ -38,9 +38,9 @@ export function Dragon({ x, y, glow, frame }: { x: number; y: number; glow: numb
       ))}
     </G>
   );
-}
+});
 
-export function Fireball({ x, y, frame }: { x: number; y: number; frame: number }) {
+export const Fireball = memo(function Fireball({ x, y, frame }: { x: number; y: number; frame: number }) {
   const f = Math.sin(frame * 0.5) * 1.5;
   return (
     <G transform={`translate(${x},${y})`}>
@@ -50,9 +50,9 @@ export function Fireball({ x, y, frame }: { x: number; y: number; frame: number 
       <Circle cx={-8 - f} cy={f * 0.5} r="1.5" fill="rgba(255,80,0,0.4)" />
     </G>
   );
-}
+});
 
-export function Pyramid({ x, y, frame, variant }: { x: number; y: number; frame: number; variant: number }) {
+export const Pyramid = memo(function Pyramid({ x, y, frame, variant }: { x: number; y: number; frame: number; variant: number }) {
   const c = ["#5a7a3a", "#7a6a2a", "#4a6a4a", "#6a5a3a", "#3a7a5a"][variant % 5];
   const ey = -2 + Math.sin(frame * 0.3) * 2;
   const px = Math.cos(frame * 0.2) * 2;
@@ -65,9 +65,9 @@ export function Pyramid({ x, y, frame, variant }: { x: number; y: number; frame:
       <Ellipse cx={px} cy={ey + 1.5} rx="0.7" ry="0.5" fill="rgba(255,255,240,0.9)" />
     </G>
   );
-}
+});
 
-export function Caduc({ x, y, t }: { x: number; y: number; t: number }) {
+export const Caduc = memo(function Caduc({ x, y, t }: { x: number; y: number; t: number }) {
   const w = Math.sin(t * 2) * 3;
   const s = 1 + Math.sin(t * 1.5) * 0.05;
   const sh1 = 0.15 + Math.sin(t * 4) * 0.15;
@@ -91,9 +91,9 @@ export function Caduc({ x, y, t }: { x: number; y: number; t: number }) {
       </G>
     </G>
   );
-}
+});
 
-export function ScarabSpr({ x, y, t, variant }: { x: number; y: number; t: number; variant: number }) {
+export const ScarabSpr = memo(function ScarabSpr({ x, y, t, variant }: { x: number; y: number; t: number; variant: number }) {
   const c = ["#e8c820", "#d4a810", "#f0d030"][variant % 3];
   const wf = Math.sin(t * 12) * 3;
   return (
@@ -105,9 +105,9 @@ export function ScarabSpr({ x, y, t, variant }: { x: number; y: number; t: numbe
       <Circle cx="1.5" cy="-6" r="0.8" fill="#1a1a0a" />
     </G>
   );
-}
+});
 
-export function BombSpr({ x, y, t }: { x: number; y: number; t: number }) {
+export const BombSpr = memo(function BombSpr({ x, y, t }: { x: number; y: number; t: number }) {
   const p = 0.7 + Math.sin(t * 3) * 0.3;
   return (
     <G transform={`translate(${x},${y})`}>
@@ -117,18 +117,18 @@ export function BombSpr({ x, y, t }: { x: number; y: number; t: number }) {
       <SvgText x="0" y="3" textAnchor="middle" fontSize="9" fill="#1a0a00" fontWeight="bold">!</SvgText>
     </G>
   );
-}
+});
 
-export function ShurikenSpr({ x, y, angle }: { x: number; y: number; angle: number }) {
+export const ShurikenSpr = memo(function ShurikenSpr({ x, y, angle }: { x: number; y: number; angle: number }) {
   return (
     <G transform={`translate(${x},${y}) rotate(${angle})`}>
       <Polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" fill="#3a3a3a" stroke="#1a1a1a" strokeWidth="1" />
       <Circle r="2.5" fill="#5a5a5a" />
     </G>
   );
-}
+});
 
-export function Boom({ x, y, progress }: { x: number; y: number; progress: number }) {
+export const Boom = memo(function Boom({ x, y, progress }: { x: number; y: number; progress: number }) {
   const r = 5 + progress * 25;
   const o = 1 - progress;
   return (
@@ -138,4 +138,4 @@ export function Boom({ x, y, progress }: { x: number; y: number; progress: numbe
       <Circle r={r * 0.3} fill={`rgba(255,255,200,${o})`} />
     </G>
   );
-}
+});
