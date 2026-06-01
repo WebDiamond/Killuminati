@@ -93,18 +93,14 @@ function drawMenuBgFrame(time) {
 var menuAnimId=null, menuFrame=0;
 function drawMenuSprites(){
   var c=document.getElementById('menu-sprites-c'); if(!c)return;
-  var ctx=c.getContext('2d'); ctx.clearRect(0,0,210,130);
+  var ctx=c.getContext('2d'); ctx.clearRect(0,0,240,130);
   var t=menuFrame*0.05, fr=menuFrame;
   ctx.save();ctx.translate(50,40);drawBomb(ctx,t);ctx.restore();
   ctx.save();ctx.translate(125,40);ctx.translate(15,15);ctx.rotate(fr*3*Math.PI/180);ctx.translate(-15,-15);drawShuriken(ctx);ctx.restore();
-  
-  // Caduc spostato a sinistra (dove prima c'era la piramide)
+  ctx.save();ctx.translate(200,30);drawGem(ctx,t);ctx.restore();
   ctx.save();ctx.translate(20,65);drawCaduc(ctx,t);ctx.restore();
-  
-  // Piramide spostata al centro con il draghetto più in alto
   ctx.save();ctx.translate(83,65);drawPyramid(ctx,fr,0);ctx.restore();
   ctx.save();ctx.translate(75,0);drawDragon(ctx,fr);ctx.restore();
-  
   ctx.save();ctx.translate(162,75);drawScarab(ctx,t,0);ctx.restore();
 }
 function startMenuAnim(){
@@ -121,17 +117,76 @@ function startMenuAnim(){
 function stopMenuAnim(){if(menuAnimId){cancelAnimationFrame(menuAnimId);menuAnimId=null;}}
 
 
+/* ---- Level transition (Uroboros) ---- */
+function drawUroboros(ctx,angle,w,h){
+  ctx.clearRect(0,0,w,h);
+  var cx=w/2,cy=h/2,R=42,bw=13;
+  ctx.save();ctx.translate(cx,cy);ctx.rotate(angle);
+  var N=72;
+  for(var i=0;i<N;i++){
+    var t=i/N,a1=t*Math.PI*2,a2=(i+1)/N*Math.PI*2;
+    var gv=Math.floor(70+t*110),rv=Math.floor(10+t*25);
+    ctx.strokeStyle='rgb('+rv+','+gv+',15)';
+    ctx.lineWidth=bw;ctx.lineCap='butt';
+    ctx.beginPath();ctx.arc(0,0,R,a1,a2);ctx.stroke();
+  }
+  for(var j=0;j<18;j++){
+    var sa=j/18*Math.PI*2,scx=Math.cos(sa)*R,scy=Math.sin(sa)*R;
+    ctx.save();ctx.translate(scx,scy);ctx.rotate(sa+Math.PI/2);
+    ctx.strokeStyle='rgba(0,50,0,0.4)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.arc(0,0,4,Math.PI,0);ctx.stroke();
+    ctx.restore();
+  }
+  ctx.save();
+  var hx=Math.cos(0.05)*R,hy=Math.sin(0.05)*R;
+  ctx.translate(hx,hy);ctx.rotate(0.05+Math.PI/2);
+  ctx.fillStyle='#1a5a28';ctx.strokeStyle='#0a3015';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.ellipse(0,-1,10,8,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.fillStyle='#0a2010';
+  ctx.beginPath();ctx.arc(-3,-3,1.5,0,Math.PI*2);ctx.fill();
+  ctx.beginPath();ctx.arc(3,-3,1.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#ffd030';ctx.beginPath();ctx.arc(-4,0,3,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#000';ctx.beginPath();ctx.arc(-4,0,1.5,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,0.5)';ctx.beginPath();ctx.arc(-3,-0.5,0.8,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#0d2a10';ctx.strokeStyle='#0a3015';ctx.lineWidth=1.2;
+  ctx.beginPath();ctx.ellipse(0,8,7,4,0,0,Math.PI*2);ctx.fill();ctx.stroke();
+  ctx.strokeStyle='#cc2020';ctx.lineWidth=1.5;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(-2,11);ctx.lineTo(-5,16);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(-2,11);ctx.lineTo(1,16);ctx.stroke();
+  ctx.restore();
+  ctx.restore();
+}
+function showLevelTransition(levelNum,callback){
+  var overlay=document.getElementById('level-overlay');
+  var txt=document.getElementById('level-txt');
+  if(txt)txt.textContent='LIVELLO '+levelNum;
+  if(overlay)overlay.classList.add('vis');
+  var uroC=document.getElementById('uroboros-c');
+  var uroCtx=uroC?uroC.getContext('2d'):null;
+  var startT=performance.now(),DURATION=2000;
+  (function uroLoop(ts){
+    var elapsed=ts-startT;
+    if(uroCtx)drawUroboros(uroCtx,elapsed*0.0025,120,120);
+    if(elapsed<DURATION){requestAnimationFrame(uroLoop);}
+    else{
+      if(overlay)overlay.classList.remove('vis');
+      setTimeout(callback,350);
+    }
+  })(startT);
+}
+
 /* ---- Controls ---- */
 var lastFire=0;
 function doFire(){
-  var now=Date.now();if(now-lastFire<500)return;lastFire=now;
-  if(gameState&&gameState.alive){
+  var now=Date.now();if(now-lastFire<200)return;lastFire=now;
+  if(gameState&&gameState.alive&&(gameState.stamina||0)>0){
     gameState.bul.push({x:gameState.sx+PLAYER_X+20,y:gameState.py});
+    gameState.stamina=(gameState.stamina||1)-1;
     if(typeof playShoot==='function')playShoot();
   }
 }
-function doUp(){if(gameState)gameState.ty=Math.max(25,gameState.ty-45);}
-function doDn(){if(gameState)gameState.ty=Math.min(SVG_H-40,gameState.ty+45);}
+function doLeft(){if(gameState)gameState.ty=Math.max(25,gameState.ty-45);}
+function doRight(){if(gameState)gameState.ty=Math.min(SVG_H-40,gameState.ty+45);}
 
 function bindBtn(id,fn,noClick){
   var el=document.getElementById(id); if(!el)return;
@@ -157,8 +212,8 @@ function initControls(){
   bindBtn('btn-info-back',function(){showScreen('menu');startMenuAnim();});
   bindBtn('btn-retry',function(){startGame();});
   bindBtn('btn-home',function(){showScreen('menu');startMenuAnim();});
-  bindBtn('btn-up',doUp,true);
-  bindBtn('btn-dn',doDn,true);
+  bindBtn('btn-left',doLeft,true);
+  bindBtn('btn-right',doRight,true);
   bindBtn('btn-fire',doFire,true);
 }
 

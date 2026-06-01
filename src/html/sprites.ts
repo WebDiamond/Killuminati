@@ -98,6 +98,29 @@ function drawBoom(ctx,progress){
   ctx.fillStyle='rgba(255,255,200,'+o+')';ctx.beginPath();ctx.arc(0,0,r*0.3,0,Math.PI*2);ctx.fill();
   ctx.restore();
 }
+function drawGem(ctx,t){
+  var pulse=0.55+Math.sin(t*5)*0.45;
+  ctx.save();ctx.translate(15,18);
+  var grd=ctx.createRadialGradient(0,0,1,0,0,15);
+  grd.addColorStop(0,'rgba(100,230,255,'+pulse+')');
+  grd.addColorStop(1,'rgba(20,80,200,0)');
+  ctx.fillStyle=grd;ctx.beginPath();ctx.arc(0,0,15,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='rgba(60,185,245,'+(0.75+pulse*0.25)+')';
+  ctx.strokeStyle='rgba(180,245,255,0.95)';ctx.lineWidth=1.5;
+  ctx.beginPath();
+  ctx.moveTo(0,-11);ctx.lineTo(8,-4);ctx.lineTo(8,4);
+  ctx.lineTo(0,11);ctx.lineTo(-8,4);ctx.lineTo(-8,-4);
+  ctx.closePath();ctx.fill();ctx.stroke();
+  ctx.fillStyle='rgba(210,252,255,'+pulse+')';
+  ctx.beginPath();ctx.moveTo(0,-8);ctx.lineTo(4,-2);ctx.lineTo(0,1);ctx.lineTo(-4,-2);ctx.closePath();ctx.fill();
+  ctx.save();ctx.rotate(t*2.5);
+  ctx.strokeStyle='rgba(255,255,255,'+pulse+')';ctx.lineWidth=1;
+  var sp=12+Math.sin(t*8)*2;
+  ctx.beginPath();ctx.moveTo(-sp,0);ctx.lineTo(sp,0);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(0,-sp);ctx.lineTo(0,sp);ctx.stroke();
+  ctx.restore();
+  ctx.restore();
+}
 function drawBgTile(ctx){
   ctx.fillStyle='#0a0e08';ctx.fillRect(0,0,40,35);
   ctx.strokeStyle='#141a10';ctx.lineWidth=0.5;
@@ -119,6 +142,7 @@ function buildTextures(){
   TEX.scarabDamaged=[];for(v=0;v<3;v++){TEX.scarabDamaged.push([]);for(f=0;f<4;f++){var gf=f,gv=v;TEX.scarabDamaged[v].push(makeTex(30,36,function(ctx){drawScarab(ctx,gf*0.6,gv);ctx.globalCompositeOperation='source-atop';ctx.fillStyle='rgba(40,220,40,0.65)';ctx.fillRect(0,0,30,36);ctx.globalCompositeOperation='source-over';}));}}
   TEX.bomb=[];for(f=0;f<4;f++){var bf=f;TEX.bomb.push(makeTex(30,30,function(ctx){drawBomb(ctx,bf*0.8);}));}
   TEX.shuriken=makeTex(30,30,function(ctx){drawShuriken(ctx);});
+  TEX.gem=[];for(f=0;f<8;f++){var gemf=f;TEX.gem.push(makeTex(30,36,function(ctx){drawGem(ctx,gemf*0.35);}));}
   TEX.bg=makeTex(40,35,function(ctx){drawBgTile(ctx);});
   TEX.bg.wrapS=TEX.bg.wrapT=THREE.RepeatWrapping;
 }

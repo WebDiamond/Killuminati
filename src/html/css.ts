@@ -30,11 +30,26 @@ html,body{width:100%;height:100%;overflow:hidden;background:#060804;}
 #hud{display:flex;justify-content:space-between;padding:6px 14px;background:rgba(6,12,4,0.92);border-bottom:1px solid #1a2a15;flex-shrink:0;}
 .hud-txt{font-family:'Exo 2',sans-serif;font-size:13px;font-weight:600;color:#80b060;letter-spacing:1px;}
 .hud-urgent{color:#e84040 !important;}
+.hud-hp{color:#e84040;}
+@keyframes blink-hp{0%,100%{opacity:1;}50%{opacity:0.25;}}
+.hud-hp-low{color:#e84040;animation:blink-hp 0.55s infinite;}
 #gc{display:block;flex:1;width:100%;}
 #ctrl{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:9px 14px;background:rgba(6,12,4,0.95);border:1px solid #1a2a15;border-radius:8px;}
 .sep{width:1px;height:36px;background:#1a2a15;}
 .gbtn{font-family:'Exo 2',sans-serif;font-weight:700;color:#5a8a40;font-size:20px;padding:12px 22px;cursor:pointer;}
 .fbtn{font-family:'Exo 2',sans-serif;font-weight:700;color:#80e050;font-size:20px;padding:12px 30px;cursor:pointer;}
+
+/* --- STAMINA --- */
+#stamina-wrap{position:absolute;bottom:96px;left:50%;transform:translateX(-50%);z-index:2;}
+#stamina-bar{width:186px;height:10px;background:#ffffff;border:1px solid #aaaaaa;border-radius:3px;display:flex;align-items:stretch;overflow:hidden;}
+.st-seg{flex:1;background:#ffffff;transition:background 0.15s;}
+.st-seg.st-empty{background:rgba(30,40,30,0.65);}
+.st-d{width:2px;background:#000000;flex-shrink:0;}
+
+/* --- LEVEL OVERLAY --- */
+#level-overlay{position:absolute;inset:0;background:rgba(4,8,4,0.94);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10;opacity:0;pointer-events:none;transition:opacity 0.35s ease;}
+#level-overlay.vis{opacity:1;pointer-events:auto;}
+#level-txt{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:#50a040;letter-spacing:5px;margin-top:22px;}
 
 /* --- OVER --- */
 #s-over{background:#060804;}

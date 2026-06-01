@@ -1,8 +1,8 @@
 import { CSS_CONTENT } from "./html/css";
 import { HTML_BODY } from "./html/htmlBody";
 import { ENGINE_JS } from "./html/engine";
-import { SPRITES_JS } from "./html/sprites";
-import { RENDERER_JS } from "./html/renderer";
+import { SPRITES_ISO_JS as SPRITES_JS } from "./html/sprites_iso";
+import { RENDERER_ISO_JS as RENDERER_JS } from "./html/renderer_iso";
 import { SCREENS_JS } from "./html/screens";
 import { AUDIO_JS } from "./html/audio";
 
