@@ -8,14 +8,17 @@ var gameState=null, gameScore=0, overFired=false, transitionActive=false;
 var animId=null, lastTs=0, accumulator=0;
 var FIXED_DT=0.05;
 var threeInited=false;
+var ISO_BULLET_ANGLE=0; /* computed in initThree once SVG_H is known */
 
-/* Isometric projection: player at bottom-left, enemies arrive from upper-right.
-   sx = relative X (PLAYER_X=60 = player depth; higher = further = upper-right)
-   sy = lateral lane (SVG_H/2 = center; higher sy = screen-right) */
+/* Isometric projection: player at bottom-left (~30% from bottom), enemies from upper-right.
+   Coefficients scale with SVG_H so layout is consistent across screen sizes.
+   sx = relative X (PLAYER_X=60 = player; higher = further away = upper-right on screen)
+   sy = lateral lane (center = SVG_H/2; higher sy = screen-right) */
 function toIso(sx,sy){
   var dy=sy-SVG_H*0.5;
-  var ix=sx*0.82-7+dy*0.4;
-  var iy=SVG_H*0.97-sx*1.17+dy*0.12;
+  var c=SVG_H/654;  /* depth coefficient: scales enemy from bottom to top as sx grows */
+  var ix=sx*0.76+17+dy*0.4;
+  var iy=SVG_H*0.7917-sx*c+dy*0.12;
   return{x:ix,y:iy};
 }
 
@@ -50,6 +53,8 @@ function initThree(){
   threeCamera=new THREE.OrthographicCamera(0,GW,SVG_H,0,-1,1);
   threeCamera.position.z=0.5;
   buildIsoTextures();
+  /* Bullet angle: direction of travel in Three.js XY (y-up) = atan2(SVG_H/654, 0.76) */
+  ISO_BULLET_ANGLE=Math.atan2(SVG_H/654,0.76);
   /* Tiled iso-diamond background */
   TEX_ISO.bg.repeat.set(GW/80,SVG_H/40);
   var bgGeo=new THREE.PlaneGeometry(GW,SVG_H);
@@ -98,6 +103,7 @@ function updateSprites(){
     if(bx>-20&&bx<GW+20){
       var ff=Math.floor(fr/2)%4;
       bulletPool[bi].material.map=TEX_ISO.fireball[ff];
+      bulletPool[bi].material.rotation=ISO_BULLET_ANGLE;
       bulletPool[bi].material.needsUpdate=true;
       bulletPool[bi].scale.set(32,20,1);
       posIsoSprite(bulletPool[bi],bx,b.y);
@@ -155,10 +161,11 @@ function updateSprites(){
     hi++;
   });
   for(;hi<hazardPool.length;hi++) hideSprite(hazardPool[hi]);
-  /* Background: tiles flow from upper-right to lower-left as player advances */
+  /* Background: tiles scroll upper-right → lower-left as player advances */
   if(bgMesh&&g){
-    TEX_ISO.bg.offset.x=(-g.sx/80*0.41)%1;
-    TEX_ISO.bg.offset.y=(g.sx/80*0.6)%1;
+    var tu=g.sx/80;
+    TEX_ISO.bg.offset.x=(-tu*0.38)%1;
+    TEX_ISO.bg.offset.y=(-tu*0.58)%1;
   }
   /* Explosions */
   var xi=0;

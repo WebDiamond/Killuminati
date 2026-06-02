@@ -185,8 +185,8 @@ function doFire(){
     if(typeof playShoot==='function')playShoot();
   }
 }
-function doLeft(){if(gameState)gameState.ty=Math.max(25,gameState.ty-45);}
-function doRight(){if(gameState)gameState.ty=Math.min(SVG_H-40,gameState.ty+45);}
+function doLeft(){if(gameState)gameState.ty=Math.max((SVG_H||600)*0.25,gameState.ty-45);}
+function doRight(){if(gameState)gameState.ty=Math.min((SVG_H||600)*0.80,gameState.ty+45);}
 
 function bindBtn(id,fn,noClick){
   var el=document.getElementById(id); if(!el)return;

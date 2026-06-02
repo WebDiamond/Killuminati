@@ -4,13 +4,15 @@ var ENEMY_COUNT = 30, BOMB_COUNT = 3, SHURIKEN_COUNT = 3;
 
 function mkE(type, sx, svgH) {
   var bvx = 0.3 + Math.random() * 1.0;
-  return { type:type, x:sx+250+Math.random()*350, y:50+Math.random()*(svgH-100),
-    vx:type==='loominadi'?bvx*1.2:type==='gem'?bvx*0.7:bvx, vy:(Math.random()-0.5)*0.8,
+  var yMin=svgH*0.26, yMax=svgH*0.79;
+  return { type:type, x:sx+250+Math.random()*350, y:yMin+Math.random()*(yMax-yMin),
+    vx:type==='loominadi'?bvx*1.2:type==='gem'?bvx*0.7:bvx, vy:(Math.random()-0.5)*0.6,
     variant:Math.floor(Math.random()*5), hp:(type==='cadooceadis'||type==='scarab')?2:1, alive:true };
 }
 function mkH(kind, sx, svgH) {
-  return { kind:kind, x:sx+350+Math.random()*450, y:50+Math.random()*(svgH-100),
-    vy:kind==='shuriken'?4.5+Math.random()*3.5:0, angle:0, alive:true };
+  var yMin=svgH*0.26, yMax=svgH*0.79;
+  return { kind:kind, x:sx+350+Math.random()*450, y:yMin+Math.random()*(yMax-yMin),
+    vy:kind==='shuriken'?3.5+Math.random()*2.5:0, angle:0, alive:true };
 }
 function pickType() {
   var r = Math.random();
@@ -34,7 +36,8 @@ function tick(g, dt, gw, svgH) {
   g.bob=Math.sin(g.fr*0.06)*3;
   var pWX=g.sx+PLAYER_X, pWY=g.py+g.bob;
   g.bul=g.bul.filter(function(b){b.x+=BULLET_SPEED;return b.x<g.sx+gw+50&&b.x>0;});
-  g.en.forEach(function(e){if(!e.alive)return;e.x+=e.vx;e.y+=e.vy;if(e.y<35||e.y>svgH-35)e.vy*=-1;});
+  var yLo=svgH*0.26, yHi=svgH*0.79;
+  g.en.forEach(function(e){if(!e.alive)return;e.x+=e.vx;e.y+=e.vy;if(e.y<yLo||e.y>yHi)e.vy*=-1;});
   g.hz.forEach(function(h){
     if(!h.alive)return;
     if(h.kind==='shuriken'){h.x-=4;h.y+=h.vy;h.angle=(h.angle+4)%360;if(h.y<25||h.y>svgH-25)h.vy*=-1;}

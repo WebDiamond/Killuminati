@@ -124,7 +124,6 @@ export default function App() {
             originWhitelist={["*"]}
             mixedContentMode="always"
             renderToHardwareTextureAndroid
-            androidHardwareAccelerationDisabled={false}
           />
         </View>
         {/* ── AdMob Banner (commentato) ──────────────────────────
@@ -140,7 +139,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: "#060804" },
+  root: { flex: 1, backgroundColor: "#000000" },
   game: { flex: 1 },
   web:  { flex: 1, backgroundColor: "#060804" },
 });

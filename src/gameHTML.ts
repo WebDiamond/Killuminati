@@ -7,10 +7,11 @@ import { SCREENS_JS } from "./html/screens";
 import { AUDIO_JS } from "./html/audio";
 
 export const GAME_HTML = `<!DOCTYPE html>
-<html lang="it">
+<html lang="it" style="background:#000;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#000000">
 <title>Dragon Strike</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Exo+2:wght@400;600;700&display=swap" rel="stylesheet">

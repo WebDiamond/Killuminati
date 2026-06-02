@@ -72,8 +72,9 @@ export const HTML_BODY = `
   </div>
   <div id="ctrl">
     <div class="gbtn" id="btn-left">&#8592;</div>
-    <div class="fbtn" id="btn-fire">&#128293;</div>
     <div class="gbtn" id="btn-right">&#8594;</div>
+    <div class="sep"></div>
+    <div class="fbtn" id="btn-fire">&#128293;</div>
   </div>
 </div>
 
